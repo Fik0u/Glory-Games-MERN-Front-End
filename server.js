@@ -14,7 +14,8 @@ app.use(express.json());
 connectDB();
 
 // Routes
-
+//Authentication routes
+app.use('/api/auth', require('./routes/auth.route'));
 
 
 
