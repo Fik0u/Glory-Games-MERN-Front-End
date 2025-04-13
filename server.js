@@ -17,6 +17,9 @@ connectDB();
 //Authentication routes
 app.use('/api/auth', require('./routes/auth.route'));
 
+// Admin routes
+app.use('/api/admin', require('./routes/admin.route'));
+
 
 
 //Port
