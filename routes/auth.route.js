@@ -1,6 +1,7 @@
 const express = require('express');
 const { register, login } = require('../controllers/auth.controller');
 const { registerValidation, loginValidation, validate } = require('../middleware/validator');
+const isAuth = require('../middleware/isAuth');
 
 
 
@@ -19,7 +20,7 @@ router.post('/register', registerValidation(), validate, register);
 router.post('/login', loginValidation(), validate, login)
 
 // Current user route
-router.get('/current', (req, res) => {
+router.get('/current', isAuth, (req, res) => {
     res.json(req.user);
 });
 
