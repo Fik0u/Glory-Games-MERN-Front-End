@@ -1,7 +1,7 @@
 {
   "name": "e-commerce-mern",
   "version": "1.0.0",
-  "description": "this is the lab phase project, a mern e-commerce about video games",
+  "description": "this is the lab phase project, a MERN e-Commerce about video games",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
