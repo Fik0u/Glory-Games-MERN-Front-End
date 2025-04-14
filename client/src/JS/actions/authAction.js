@@ -44,6 +44,6 @@ export const currentUser = () => async (dispatch) => {
 };
 
 // Logout user
-export const logout = () => async (dispatch) => {
+export const logout = () => (dispatch) => {
     dispatch({ type: LOGOUT_AUTH });
 };
