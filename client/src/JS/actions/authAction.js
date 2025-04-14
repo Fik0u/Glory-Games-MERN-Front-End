@@ -6,11 +6,12 @@ import { CURRENT_AUTH, FAIL_AUTH, LOAD_AUTH, LOGOUT_AUTH, SUCCESS_AUTH } from '.
 //! Action creators
 
 // Register user
-export const register = (newUser) => async (dispatch) => {
+export const register = (newUser, navigate) => async (dispatch) => {
     dispatch({ type: LOAD_AUTH });
     try {
         const result = await axios.post('/api/auth/register', newUser);
         dispatch({ type: SUCCESS_AUTH, payload: result.data });
+        navigate('/profile')
     } catch (error) {
         dispatch({ type: FAIL_AUTH, payload: error.response.data.errors });
     }
