@@ -28,7 +28,7 @@ const Register = () => {
     e.preventDefault();
     dispatch(register(newUser, navigate))
   };
-  console.log(newUser)
+  // console.log(newUser)
 
   return (
     <div className='container m-8'>
