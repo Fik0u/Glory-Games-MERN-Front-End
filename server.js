@@ -7,6 +7,7 @@ const connectDB = require('./config/connectDB');
 
 const app = express();
 
+
 // Middleware
 app.use(express.json());
 
@@ -20,6 +21,9 @@ app.use('/api/auth', require('./routes/auth.route'));
 // Admin routes
 app.use('/api/admin', require('./routes/admin.route'));
 
+// Product routes
+app.use('/api/product', require('./routes/product.route'));
+
 
 
 //Port
@@ -29,3 +33,15 @@ const PORT = process.env.PORT || 1999;
 app.listen(PORT, (err) => {
     err ? console.log("Server couldn't run 👾", err) : console.log(`Server is running on port ${PORT} 🤖`)
 })
+
+
+
+
+
+
+
+
+
+
+
+
