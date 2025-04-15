@@ -18,11 +18,12 @@ export const register = (newUser, navigate) => async (dispatch) => {
 };
 
 // Login user
-export const login = (user) => async (dispatch) => {
+export const login = (user, navigate) => async (dispatch) => {
     dispatch({ type: LOAD_AUTH });
     try {
-        const result = axios.post('/api/auth/login', user);
+        const result = await axios.post('/api/auth/login', user);
         dispatch({ type: SUCCESS_AUTH, payload: result.data });
+        navigate('/profile')
     } catch (error) {
         dispatch({ type: FAIL_AUTH, payload: error.response.data.errors });
     }
