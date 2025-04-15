@@ -6,8 +6,21 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import Error from './pages/Error';
 import NavBar from './components/NavBar';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { currentUser } from './JS/actions/authAction';
 
 function App() {
+
+  const dispatch = useDispatch();
+
+  // If the user is already authenticated
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      dispatch(currentUser())
+    }
+  }, [dispatch]);
+  
   return (
     <div className="App">
 
