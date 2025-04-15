@@ -1,5 +1,6 @@
 const express = require('express');
 const { addProduct, getProducts, getOne, editProduct, deleteProduct } = require('../controllers/product.controller');
+const isAdmin = require('../middleware/isAdmin');
 
 const router = express.Router();
 
@@ -9,11 +10,11 @@ router.get('/test', (req, res) => {
 });
 
 // Add Product Route
-router.post('/addProd', addProduct);
+router.post('/addProd', isAdmin, addProduct);
 router.get('/getProds', getProducts);
 router.get('/:id', getOne);
-router.put('/:id', editProduct);
-router.delete('/:id', deleteProduct);
+router.put('/:id', isAdmin, editProduct);
+router.delete('/:id', isAdmin, deleteProduct);
 
 module.exports = router;
 

@@ -4,12 +4,11 @@ const productSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
-        trim: true
+        unique: true
       },
       description: {
         type: String,
-        required: true,
-        trim: true
+        required: true
       },
       price: {
         type: Number,
@@ -18,8 +17,7 @@ const productSchema = new mongoose.Schema({
       },
       category: {
         type: String,
-        required: true,
-        trim: true
+        required: true
       },
       inStock: {
         type: Boolean,
@@ -29,7 +27,8 @@ const productSchema = new mongoose.Schema({
         type: String,
         default: ''
       }
-
+}, {
+      timestamps: true
 });
 
 const Product = mongoose.model('product', productSchema);
