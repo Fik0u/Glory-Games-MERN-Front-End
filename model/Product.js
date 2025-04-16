@@ -24,7 +24,7 @@ const productSchema = new mongoose.Schema({
       },
       image: {
         type: String,
-        default: ''
+        default: 'https://icons.iconarchive.com/icons/dtafalonso/android-l/256/Play-Games-icon.png'
       }
 }, {
       timestamps: true
