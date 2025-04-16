@@ -1,6 +1,7 @@
 import React from 'react'
 import { Container, Nav, Navbar } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom'
 import { logout } from '../JS/actions/authAction';
 
 
@@ -9,6 +10,7 @@ const NavBar = () => {
     const isAuth = useSelector(state => state.authReducer.isAuth);
     const user = useSelector(state => state.authReducer.user);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
   return (
     <div>
@@ -22,7 +24,7 @@ const NavBar = () => {
             {isAuth ? (
                 <>
                     <Nav.Link href="/profile">Profile</Nav.Link>
-                    <Nav.Link href="#" onClick = {() => dispatch(logout())}>Logout</Nav.Link>
+                    <Nav.Link href="#" onClick = {() => dispatch(logout(navigate))}>Logout</Nav.Link>
 
                 </>
             ) : (

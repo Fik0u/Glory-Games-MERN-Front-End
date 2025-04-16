@@ -15,6 +15,7 @@ function App() {
 
   const dispatch = useDispatch();
   const user = useSelector(state => state.authReducer.user);
+  const isAuth = useSelector(state => state.authReducer.isAuth);
 
   // If the user is already authenticated
   useEffect(() => {
@@ -33,9 +34,15 @@ function App() {
 {/* Main Routes  */}
       <Routes>
         <Route path = '/' element = { <Home /> } />
-        <Route path = '/profile' element = { <Profile /> } />
+        {isAuth ? (
+          <Route path = '/profile' element = { <Profile /> } />
+        ) : (
+          <>
         <Route path = '/register' element = { <Register /> } />
         <Route path = '/login' element = { <Login /> } />
+          </>
+        )}
+        
         {user && user.isAdmin &&
         <Route path = '/admin' element = { <Dashboard /> } />}
         <Route path = '/*' element = { <Error /> } />
