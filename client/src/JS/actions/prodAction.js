@@ -28,7 +28,7 @@ export const getProds = () => async (dispatch) => {
     dispatch({ type: LOAD_PRODUCT });
     try {
         const result = await axios.get('/api/product/getProds');
-        dispatch({ type: GET_PRODUCTS, payload: result.data.getProducts })
+        dispatch({ type: GET_PRODUCTS, payload: result.data.prodsList })
     } catch (error) {
         dispatch({ type: FAIL_PRODUCT, payload: error.response.data })
     }
@@ -39,7 +39,7 @@ export const getOneProd = (id) => async (dispatch) => {
     dispatch({ type: LOAD_PRODUCT });
     try {
         const result = await axios.get(`/api/product/${id}`);
-        dispatch({ type: GET_ONE_PRODUCT, payload: result.data.getOne })
+        dispatch({ type: GET_ONE_PRODUCT, payload: result.data.oneProd})
     } catch (error) {
         dispatch({ type: FAIL_PRODUCT, payload: error.response.data })
     }

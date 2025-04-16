@@ -6,13 +6,15 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import Error from './pages/Error';
 import NavBar from './components/NavBar';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { currentUser } from './JS/actions/authAction';
+import Dashboard from './pages/Dashboard';
 
 function App() {
 
   const dispatch = useDispatch();
+  const user = useSelector(state => state.authReducer.user);
 
   // If the user is already authenticated
   useEffect(() => {
@@ -34,6 +36,8 @@ function App() {
         <Route path = '/profile' element = { <Profile /> } />
         <Route path = '/register' element = { <Register /> } />
         <Route path = '/login' element = { <Login /> } />
+        {user && user.isAdmin &&
+        <Route path = '/admin' element = { <Dashboard /> } />}
         <Route path = '/*' element = { <Error /> } />
       </Routes>
       
