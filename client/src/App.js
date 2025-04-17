@@ -10,6 +10,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { currentUser } from './JS/actions/authAction';
 import Dashboard from './pages/Dashboard';
+import ProdDetails from './pages/ProdDetails';
+
 
 function App() {
 
@@ -34,6 +36,7 @@ function App() {
 {/* Main Routes  */}
       <Routes>
         <Route path = '/' element = { <Home /> } />
+        <Route path = '/product/:id' element = {<ProdDetails />} />
         {isAuth ? (
           <Route path = '/profile' element = { <Profile /> } />
         ) : (

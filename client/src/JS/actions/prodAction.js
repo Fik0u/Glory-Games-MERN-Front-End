@@ -71,7 +71,8 @@ export const deletedProd = (id) => async (dispatch) => {
             }
         };
         const result = await axios.delete(`/api/product/${id}`, config);
-        dispatch({ type: DELETE_PRODUCT, payload: result.data.deletedProd })
+        dispatch({ type: DELETE_PRODUCT, payload: result.data.deletedProd });
+        dispatch(getProds());
     } catch (error) {
         dispatch({ type: FAIL_PRODUCT, payload: error.response.data})
     }
