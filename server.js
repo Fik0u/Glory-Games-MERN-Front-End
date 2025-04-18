@@ -24,6 +24,8 @@ app.use('/api/admin', require('./routes/admin.route'));
 // Product routes
 app.use('/api/product', require('./routes/product.route'));
 
+// Order routes
+app.use('/api/order', require('./routes/order.route'));
 
 
 //Port
