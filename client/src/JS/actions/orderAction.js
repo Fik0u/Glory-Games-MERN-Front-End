@@ -44,7 +44,12 @@ export const getMyOrders = () => async (dispatch) => {
 export const getAllOrders = () => async (dispatch) => {
     dispatch({ type: LOAD_ORDER });
     try {
-        const result = await axios.get('/api/order/all');
+        const config = {
+            headers: {
+                Authorization: localStorage.getItem('token')
+            }
+        };
+        const result = await axios.get('/api/order/all', config);
         dispatch({ type: GET_ALL_ORDERS, payload: result.data.orders });
     } catch (error) {
         dispatch({ type: FAIL_ORDER, payload: error.response.data.errors || error.message })
