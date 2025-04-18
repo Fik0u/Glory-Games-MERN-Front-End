@@ -60,7 +60,12 @@ export const getAllOrders = () => async (dispatch) => {
 export const getOneOrder = (id) => async (dispatch) => {
     dispatch({ type: LOAD_ORDER });
     try {
-        const result = await axios.get(`/api/order/${id}`);
+        const config = {
+            headers: {
+                Authorization: localStorage.getItem('token')
+            }
+        };
+        const result = await axios.get(`/api/order/${id}`, config);
         dispatch({ type: GET_ONE_ORDER, payload: result.data.order });
     } catch (error) {
         dispatch({ type: FAIL_ORDER, payload: error.response.data.errors || error.message })
@@ -71,7 +76,12 @@ export const getOneOrder = (id) => async (dispatch) => {
 export const updateOrderStatus = (id, status) => async (dispatch) => {
     dispatch({ type: LOAD_ORDER });
     try {
-        const result = await axios.put(`/api/order/${id}`, { status });
+        const config = {
+            headers: {
+                Authorization: localStorage.getItem('token')
+            }
+        };
+        const result = await axios.put(`/api/order/${id}`, { status }, config);
         dispatch({ type: UPDATE_STATUS_ORDER, payload: result.data.order });
     } catch (error) {
         dispatch({ type: FAIL_ORDER, payload: error.response.data.errors || error.message })
