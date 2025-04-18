@@ -11,6 +11,8 @@ import { useEffect } from 'react';
 import { currentUser } from './JS/actions/authAction';
 import Dashboard from './pages/Dashboard';
 import ProdDetails from './pages/ProdDetails';
+import AddOrder from './components/AddOrder';
+import AllOrders from './components/AllOrders';
 
 
 function App() {
@@ -38,7 +40,10 @@ function App() {
         <Route path = '/' element = { <Home /> } />
         <Route path = '/product/:id' element = {<ProdDetails />} />
         {isAuth ? (
+          <>
           <Route path = '/profile' element = { <Profile /> } />
+          <Route path = '/orderTest' element = { <AddOrder /> } />
+          </>
         ) : (
           <>
         <Route path = '/register' element = { <Register /> } />
@@ -48,6 +53,8 @@ function App() {
         
         {user && user.isAdmin &&
         <Route path = '/admin' element = { <Dashboard /> } />}
+        {user && user.isAdmin && 
+        <Route path = '/admin/orders' element = { <AllOrders /> } />}
         <Route path = '/*' element = { <Error /> } />
       </Routes>
       

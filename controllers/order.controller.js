@@ -31,7 +31,7 @@ exports.myOrders = async (req, res) => {
     try {
         const orders = await Order.find({ user: req.user.id });
         if (orders.length === 0) {
-            res.status(404).json({ msg: "You didn't place any order yet 🫤"});
+           return res.status(404).json({ msg: "You didn't place any order yet 🫤"});
         };
         res.status(200).json({ msg: 'My orders list fetched successfully 📋', orders})
     } catch (error) {

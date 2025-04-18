@@ -10,9 +10,15 @@ import { ADD_ORDER, FAIL_ORDER, GET_ALL_ORDERS, GET_MY_ORDERS, GET_ONE_ORDER, LO
 export const addOrder = (newOrder, navigate) => async (dispatch) => {
     dispatch({ type: LOAD_ORDER });
     try {
-        const result = await axios.post('/api/order/addOrder', newOrder);
+        const config = {
+            headers: {
+                Authorization: localStorage.getItem('token')
+            }
+        };
+
+        const result = await axios.post('/api/order/addOrder', newOrder, config);
         dispatch({ type: ADD_ORDER, payload: result.data });
-        // navigate('/profile/orders')
+        navigate('/profile')
     } catch (error) {
         dispatch({ type: FAIL_ORDER, payload: error.response.data.errors || error.message })
     }
@@ -22,7 +28,12 @@ export const addOrder = (newOrder, navigate) => async (dispatch) => {
 export const getMyOrders = () => async (dispatch) => {
     dispatch({ type: LOAD_ORDER });
     try {
-        const result = await axios.get('/api/order/myOrders');
+        const config = {
+            headers: {
+                Authorization: localStorage.getItem('token')
+            }
+        };
+        const result = await axios.get('/api/order/myOrders', config);
         dispatch({ type: GET_MY_ORDERS, payload: result.data.orders });
     } catch (error) {
         dispatch({ type: FAIL_ORDER, payload: error.response.data.errors || error.message })

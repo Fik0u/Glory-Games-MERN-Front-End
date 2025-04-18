@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import MyOrders from '../components/MyOrders';
 
 const Profile = () => {
 
@@ -9,6 +10,8 @@ const Profile = () => {
     <div style={{margin:'40px'}}>
       <h3> Hello { user.fullName} </h3>
       <img src="https://static.vecteezy.com/system/resources/previews/019/879/186/non_2x/user-icon-on-transparent-background-free-png.png" alt="profile test" width={"300px"} />
+    
+    <MyOrders />
     </div>
   )
 }
