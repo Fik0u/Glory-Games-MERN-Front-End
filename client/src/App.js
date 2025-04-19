@@ -13,6 +13,7 @@ import Dashboard from './pages/Dashboard';
 import ProdDetails from './pages/ProdDetails';
 import AddOrder from './components/AddOrder';
 import AllOrders from './components/AllOrders';
+import Cart from './components/Cart';
 
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
           <>
           <Route path = '/profile' element = { <Profile /> } />
           <Route path = '/orderTest' element = { <AddOrder /> } />
+          <Route path = '/cart' element = { <Cart />} />
           </>
         ) : (
           <>

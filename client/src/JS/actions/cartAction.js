@@ -8,7 +8,12 @@ import { ADD_TO_CART, CLEAR_CART, LOAD_CART, REMOVE_FROM_CART, UPDATE_CART_ITEM 
 export const addToCart = (product, quantity) => async (dispatch, getState) => {
     dispatch({ type: LOAD_CART });
     try {
-        const result = await axios.post('/api/cart/addToCart', { product, quantity });
+        const config = {
+            headers: {
+                Authorization: localStorage.getItem('token')
+            }
+        };
+        const result = await axios.post('/api/cart/addToCart', { productId: product._id, quantity }, config);
         dispatch({ type: ADD_TO_CART, payload: { product, quantity }});
         localStorage.setItem('cartItems', JSON.stringify(getState().cartReducer.cartItems));
     } catch (error) {

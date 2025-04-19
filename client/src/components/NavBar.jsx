@@ -24,6 +24,7 @@ const NavBar = () => {
             {isAuth ? (
                 <>
                     <Nav.Link href="/profile">Profile</Nav.Link>
+                    <Nav.Link href="/cart">Cart</Nav.Link>
                     <Nav.Link href="#" onClick = {() => dispatch(logout(navigate))}>Logout</Nav.Link>
 
                 </>

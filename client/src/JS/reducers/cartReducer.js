@@ -1,9 +1,13 @@
 import { ADD_TO_CART, CLEAR_CART, LOAD_CART, REMOVE_FROM_CART, UPDATE_CART_ITEM } from "../actionTypes/cartActionTypes";
 
 
+const cartItemsFromStorage = localStorage.getItem('cartItems')
+    ? JSON.parse(localStorage.getItem('cartItems'))
+    : [];
+
 const initialState = {
     isLoad: false,
-    cartItems: []
+    cartItems: cartItemsFromStorage
 };
 
 const cartReducer = (state = initialState, { type, payload }) => {
