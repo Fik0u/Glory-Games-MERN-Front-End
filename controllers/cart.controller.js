@@ -58,16 +58,17 @@ exports.getCart = async (req, res) => {
 exports.updateCartItem = async (req, res) => {
     const { itemId } = req.params;
     const { quantity } = req.body;
+    // console.log(req.params)
     try {
         const cart = await Cart.findOne({ user: req.user.id });
 
         if (!cart) {
-            res.status(404).json({ msg: 'Cart not found 🙁'})
+            return res.status(404).json({ msg: 'Cart not found 🙁'})
         }
 
-        const item = cart.items.id(itemId)
+        const item = cart.items.find(item => item.product.toString() === itemId);
         if (!item) {
-            res.status(404).json({ msg: 'Item not found in cart 🤷‍♂️'})
+            return res.status(404).json({ msg: 'Item not found in cart 🤷‍♂️'})
         }
 
         item.quantity = quantity;
@@ -97,7 +98,7 @@ exports.removeCartItem = async (req, res) => {
             res.status(404).json({ msg: 'Cart not found 🙁'})
         }
 
-        cart.items = cart.items.filter(item => item._id.toString() !== itemId);
+        cart.items = cart.items.filter(item => item.product.toString() !== itemId);
         
         const totalAmount = await Promise.all(
             cart.items.map(async (item) => {
@@ -132,7 +133,8 @@ exports.clearCart = async (req, res) => {
         cart.items = [];
         
         cart.total = 0;
-
+        
+        await cart.save();
         res.status(200).json({ msg: 'Cart cleared successfully 🫡', cart })
     } catch (error) {
         res.status(400).json({ msg: "Couldn't clear cart 🫤" });
