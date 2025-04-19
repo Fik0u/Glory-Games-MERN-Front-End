@@ -9,23 +9,33 @@ const Cart = () => {
     const dispatch = useDispatch();
     const cartItems = useSelector(state => state.cartReducer.cartItems);
 // console.log(cartItems)
+
     useEffect(() => {
       const savedCartItems = JSON.parse(localStorage.getItem('cartItems'));
       if (savedCartItems) {
-        savedCartItems.forEach(item => dispatch(updateCartItem(item.product._id, item.quantity)));
+        savedCartItems.forEach(item => {
+          if (!cartItems.find(cartItem => cartItem.product._id === item.product._id)) {
+          dispatch(updateCartItem(item.product._id, item.quantity));
       }
-    }, [dispatch]);
+    });
+  }
+    }, [dispatch, cartItems]);
+
 
     const handleQuantityChange = (productId, quantity) => {
-        dispatch(updateCartItem(productId, Number(quantity)))
+        dispatch(updateCartItem(productId, Number(quantity)));
+        //Update localStorage after changing quantity
+        localStorage.setItem('cartItems', JSON.stringify(cartItems))
     };
 
     const handleRemove = (productId) => {
         dispatch(removeFromCart(productId));
+        localStorage.setItem('cartItems', JSON.stringify(cartItems))
     };
 
     const handleClearCart = () => {
-        dispatch(clearCart())
+        dispatch(clearCart());
+        localStorage.removeItem('cartItems')
     };
 
     const totalPrice = cartItems.reduce((acc, item) => acc + item.product.price * item.quantity, 0);

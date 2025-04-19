@@ -22,23 +22,57 @@ export const addToCart = (product, quantity) => async (dispatch, getState) => {
 };
 
 // 🔹 Update Cart Item
-export const updateCartItem = (id, quantity) => (dispatch, getState) => {
-    dispatch({ type: UPDATE_CART_ITEM, payload: { id, quantity }
-    });
+export const updateCartItem = (id, quantity) => async (dispatch, getState) => {
+    dispatch({ type: LOAD_CART });
+    try {
+        const config = {
+            headers: {
+                Authorization: localStorage.getItem('token')
+            }
+        };
+        // console.log(id)
+        const result = await axios.put(`/api/cart/${id}`, { quantity }, config);
 
-    localStorage.setItem('cartItems', JSON.stringify(getState().cartReducer.cartItems));
+        dispatch({ type: UPDATE_CART_ITEM, payload: { id, quantity }
+        });
+        localStorage.setItem('cartItems', JSON.stringify(getState().cartReducer.cartItems));
+    } catch (error) {
+        console.error(error)
+    }
 };
 
 // 🔹 Remove Item from Cart
-export const removeFromCart = (id) => (dispatch, getState) => {
-    dispatch({ type: REMOVE_FROM_CART, payload: id });
+export const removeFromCart = (id) => async (dispatch, getState) => {
+    dispatch({ type: LOAD_CART });
+    try {
+        const config = {
+            headers: {
+                Authorization: localStorage.getItem('token')
+            }
+        };
+        const result = await axios.delete(`/api/cart/${id}`, config);
+        dispatch({ type: REMOVE_FROM_CART, payload: id });
+        localStorage.setItem('cartItems', JSON.stringify(getState().cartReducer.cartItems));
+    } catch (error) {
+        console.error(error)
+    }
 
-    localStorage.setItem('cartItems', JSON.stringify(getState().cartReducer.cartItems));
 };
 
 // 🔹 Clear Cart
-export const clearCart = () => (dispatch) => {
-    dispatch({ type: CLEAR_CART });
+export const clearCart = () => async (dispatch) => {
+    dispatch({ type: LOAD_CART });
+    try {
+        const config = {
+            headers: {
+                Authorization: localStorage.getItem('token')
+            }
+        };
+        const result = await axios.put('/api/cart/clearCart', {}, config);
+        dispatch({ type: CLEAR_CART });
+        localStorage.removeItem('cartItems');
+    } catch (error) {
+        console.error(error);
+    }
 
-    localStorage.removeItem('cartItems');
 };

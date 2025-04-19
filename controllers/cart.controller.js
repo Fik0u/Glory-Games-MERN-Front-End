@@ -24,6 +24,15 @@ exports.addToCart = async (req, res) => {
             cart.items.push({ product: productId, quantity })
         };
 
+        const totalAmount = await Promise.all(
+            cart.items.map(async(item) => {
+                const product = await Product.findById(item.product);
+                return product.price * item.quantity;
+            })
+        );
+        
+        cart.total = totalAmount.reduce((acc, curr) => acc + curr, 0);
+
         await cart.save();
         res.status(200).json({ msg: 'Product added to cart 🛒', cart })
     } catch (error) {
@@ -63,6 +72,15 @@ exports.updateCartItem = async (req, res) => {
 
         item.quantity = quantity;
 
+        const totalAmount = await Promise.all(
+            cart.items.map(async (item) => {
+                const product = await Product.findById(item.product);
+                return product.price * item.quantity;
+            })
+        );
+
+        cart.total = totalAmount.reduce((acc, curr) => acc + curr, 0);
+
         await cart.save();
         res.status(200).json({ msg: 'Cart item updated successfully 🫡', cart})
     } catch (error) {
@@ -80,13 +98,43 @@ exports.removeCartItem = async (req, res) => {
         }
 
         cart.items = cart.items.filter(item => item._id.toString() !== itemId);
+        
+        const totalAmount = await Promise.all(
+            cart.items.map(async (item) => {
+                const product = await Product.findById(item.product);
+                return product.price * item.quantity;
+            })
+        );
+        
+        cart.total = totalAmount.reduce((acc, curr) => acc + curr, 0);
+        
         await cart.save();
 
         if(cart.items.length === 0) {
             return res.status(200).json({ msg: 'Cart is now empty 🧹'})
         };
+
         res.status(200).json({ msg: 'Item removed from cart successfully 🫡', cart })
     } catch (error) {
         res.status(400).json({ msg: "Couldn't remove item from cart 🫤"})
+    }
+};
+
+// 🔹 PUT : Clear Cart
+exports.clearCart = async (req, res) => {
+    try {
+        const cart = await Cart.findOne({ user: req.user.id });
+
+        if (!cart) {
+            return res.status(404).json({ msg: 'Cart not found 🙁'})
+        };
+
+        cart.items = [];
+        
+        cart.total = 0;
+
+        res.status(200).json({ msg: 'Cart cleared successfully 🫡', cart })
+    } catch (error) {
+        res.status(400).json({ msg: "Couldn't clear cart 🫤" });
     }
 };
