@@ -1,5 +1,6 @@
 const Order = require('../model/Order');
 const Product = require('../model/Product');
+const User = require('../model/User');
 
 
 // 🔹 POST : Add New Order
@@ -17,12 +18,24 @@ exports.addOrder = async (req, res) => {
 //🔹 GET : All Orders List
 exports.allOrders = async (req, res) => {
     try {
-        const orders = await Order.find();
+        const orders = await Order.find()
+        .populate({
+            path: 'user',
+            model:'user',
+            select:'fullName'
+    })
+        .populate({
+            path:'products.product',
+            model: 'product',
+            select: 'name price'
+        });
+
         if (orders.length === 0) {
             res.status(404).json({ msg: "There are no orders yet 🤔"});
         }
         res.status(200).json({ msg: 'Users orders list found successfully 🫡', orders});
     } catch (error) {
+        console.error(error.message);
         res.status(400).json({ msg: "Couldn't find the users orders list"});
     }
 };
@@ -76,23 +89,37 @@ exports.updateStatus = async (req, res) => {
         const validStatus = ['In preparation', 'Shipped', 'Delivered'];
 
         if (!validStatus.includes(status)) {
-            res.status(400).json({ msg: 'Invalid status 🛑'})
+            return res.status(400).json({ msg: 'Invalid status 🛑'})
         };
 
         const order = await Order.findById(id);
 
         if (!order) {
-            res.status(404).json({ msg: 'Order not found 🫤'})
+            return res.status(404).json({ msg: 'Order not found 🫤'})
         }; 
 
         if (!req.user.isAdmin) {
-            res.status(403).json({ msg: 'Access denied 😐'})
+            return res.status(403).json({ msg: 'Access denied 😐'})
         };
 
         order.status = status;
         await order.save();
-        res.status(200).json({ msg: `Order status updated to ${status} successfully 🫡`, order })
+
+        const updatedOrder = await Order.findById(id)
+        .populate({
+            path: 'user',
+            model:'user',
+            select:'fullName'
+    })
+        .populate({
+            path:'products.product',
+            model: 'product',
+            select: 'name price'
+        });
+
+        res.status(200).json({ msg: `Order status updated to ${status} successfully 🫡`, order: updatedOrder })
     } catch (error) {
+        console.error(error)
         res.status(400).json({ msg: "Couldn't update the order status 🙁"})
     }
 };
