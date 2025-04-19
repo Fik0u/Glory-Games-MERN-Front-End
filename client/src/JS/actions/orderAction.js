@@ -20,7 +20,10 @@ export const addOrder = (newOrder, navigate) => async (dispatch) => {
         dispatch({ type: ADD_ORDER, payload: result.data });
         navigate('/profile')
     } catch (error) {
-        dispatch({ type: FAIL_ORDER, payload: error.response.data.errors || error.message })
+        const errorMsg = error.response && error.response.data && error.response.data.errors 
+        ? error.response.data.errors
+        : error.message;
+        dispatch({ type: FAIL_ORDER, payload: errorMsg })
     }
 };
 
@@ -35,6 +38,7 @@ export const getMyOrders = () => async (dispatch) => {
         };
         const result = await axios.get('/api/order/myOrders', config);
         dispatch({ type: GET_MY_ORDERS, payload: result.data.orders });
+        // console.log(result.data)
     } catch (error) {
         dispatch({ type: FAIL_ORDER, payload: error.response.data.errors || error.message })
     }

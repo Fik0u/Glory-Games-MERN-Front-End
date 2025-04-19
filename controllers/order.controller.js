@@ -4,8 +4,8 @@ const Order = require('../model/Order');
 // 🔹 POST : Add New Order
 exports.addOrder = async (req, res) => {
     try {
-        const { products, total } = req.body;
-        const newOrder = new Order({ products, total, user: req.user.id });
+        const { products, total, shippingAddress, paymentMethod } = req.body;
+        const newOrder = new Order({ products, total, shippingAddress, paymentMethod, user: req.user.id });
         await newOrder.save();
         res.status(201).json({ msg: 'Order placed successfully 🛒', newOrder });
     } catch (error) {
@@ -29,7 +29,11 @@ exports.allOrders = async (req, res) => {
 //🔹 GET : User Orders List
 exports.myOrders = async (req, res) => {
     try {
-        const orders = await Order.find({ user: req.user.id });
+        const orders = await Order.find({ user: req.user.id })
+    //     .populate({
+    //         path: 'products.product',
+    //         select: 'name price'
+    // });
         if (orders.length === 0) {
            return res.status(404).json({ msg: "You didn't place any order yet 🫤"});
         };
@@ -43,7 +47,7 @@ exports.myOrders = async (req, res) => {
 exports.oneOrder = async (req, res) => {
     try {
         const { id } = req.params
-        const order = await Order.findById(id);
+        const order = await Order.findById(id).populate('products.product');
         if (!order) {
             res.status(404).json({ msg: 'Order not found 🫤'})
         };

@@ -17,12 +17,15 @@ const orderSchema = new mongoose.Schema({
             required: true,
             min: 1
         },
+        price: Number
     }
     ],
     total: {
         type: Number,
         required: true
     },
+    shippingAddress: String,
+    paymentMethod: String,
     status: {
         type: String,
         enum: ['In preparation', 'Shipped', 'Delivered'],

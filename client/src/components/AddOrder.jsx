@@ -29,14 +29,20 @@ const AddOrder = () => {
         return;
       };
       setProcessing(true);
+
       const newOrder = {
-        items: cartItems,
-        totalAmount,
+        products: cartItems.map(item => ({
+          product: item.product._id,
+          quantity: item.quantity,
+          price: item.product.price,
+        })),
+        total: totalAmount,
         shippingAddress : orderDetails.address,
         paymentMethod: orderDetails.paymentMethod
       };
 
       dispatch(addOrder(newOrder));
+      alert('Order placed successfully 🫡')
       setProcessing(false)
     };
 
