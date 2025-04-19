@@ -1,4 +1,5 @@
 const Order = require('../model/Order');
+const Product = require('../model/Product');
 
 
 // 🔹 POST : Add New Order
@@ -30,16 +31,21 @@ exports.allOrders = async (req, res) => {
 exports.myOrders = async (req, res) => {
     try {
         const orders = await Order.find({ user: req.user.id })
-    //     .populate({
-    //         path: 'products.product',
-    //         select: 'name price'
-    // });
+        .populate({
+            path:'products.product',
+            model: 'product',
+            select: 'name price'
+        });
+        
+
         if (orders.length === 0) {
            return res.status(404).json({ msg: "You didn't place any order yet 🫤"});
         };
+
         res.status(200).json({ msg: 'My orders list fetched successfully 📋', orders})
     } catch (error) {
-        res.status(400).json({ msg: "Couldn't find the orders list 🙁"});
+        console.error(error.message)
+        res.status(400).json({ msg: "Couldn't find the orders list 🙁", error: error.message });
     }
 };
 

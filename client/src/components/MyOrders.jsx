@@ -23,12 +23,12 @@ import { getMyOrders } from '../JS/actions/orderAction';
                     <p><strong>Shipping Address:</strong> {order.shippingAddress}</p>
                     <p><strong>Payment Method:</strong> {order.paymentMethod}</p>
 
-                    <h4>Products:</h4>
+                    <h4>📦 Products:</h4>
                     {order.products.map((item, index) => (
                       <div key={index} style={{ marginLeft: "20px" }}>
-                        <p>📦 <strong>{item.product}</strong></p>
+                        <p><strong>{item.product.name}</strong></p>
                         <p>Quantity: {item.quantity}</p>
-                        <p>Price: {item.price} $</p>
+                        <p>Price: {item.product.price} $</p>
                       </div>
                     ))}
                   </div>
