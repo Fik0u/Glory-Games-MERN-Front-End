@@ -43,7 +43,7 @@ function App() {
         {isAuth ? (
           <>
           <Route path = '/profile' element = { <Profile /> } />
-          <Route path = '/orderTest' element = { <AddOrder /> } />
+          <Route path = '/order' element = { <AddOrder /> } />
           <Route path = '/cart' element = { <Cart />} />
           </>
         ) : (
