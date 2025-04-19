@@ -14,6 +14,7 @@ import ProdDetails from './pages/ProdDetails';
 import AddOrder from './components/AddOrder';
 import AllOrders from './components/AllOrders';
 import Cart from './components/Cart';
+import OrderDetails from './pages/OrderDetails';
 
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
           <Route path = '/profile' element = { <Profile /> } />
           <Route path = '/order' element = { <AddOrder /> } />
           <Route path = '/cart' element = { <Cart />} />
+          <Route path = '/order/:id' element = { <OrderDetails />} />
           </>
         ) : (
           <>

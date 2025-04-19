@@ -66,7 +66,13 @@ exports.myOrders = async (req, res) => {
 exports.oneOrder = async (req, res) => {
     try {
         const { id } = req.params
-        const order = await Order.findById(id).populate('products.product');
+        const order = await Order.findById(id)
+        .populate({
+            path:'products.product',
+            model: 'product',
+            select: 'name price'
+        });
+        
         if (!order) {
             res.status(404).json({ msg: 'Order not found 🫤'})
         };

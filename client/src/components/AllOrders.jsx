@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllOrders, updateOrderStatus } from '../JS/actions/orderAction';
+import { Link } from 'react-router-dom';
+
 
 const AllOrders = () => {
 
@@ -56,7 +58,9 @@ const AllOrders = () => {
                   </select>
                   <button onClick={() => handleUpdate(order._id)}>Update</button>
                 </div>
-
+                <Link to={`/order/${order._id}`} style={{ padding: "5px 10px", background: "#4CAF50", color: "white", borderRadius: "5px", textDecoration: "none" }}>
+                            View Details
+                </Link>
                 </div>
             ))
         ) : (

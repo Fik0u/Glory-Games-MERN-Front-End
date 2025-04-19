@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getMyOrders } from '../JS/actions/orderAction';
-
+import { Link } from 'react-router-dom';
     
     const MyOrders = () => {
         const dispatch = useDispatch();
         const myOrders = useSelector(state => state.orderReducer.myOrders);
-        console.log(myOrders)
+        // console.log(myOrders)
         
         useEffect(() => {
             dispatch(getMyOrders())
@@ -31,6 +31,9 @@ import { getMyOrders } from '../JS/actions/orderAction';
                         <p>Price: {item.product.price} $</p>
                       </div>
                     ))}
+                    <Link to = {`/order/${order._id}`}>
+                        <button>Voir les détails</button>
+                    </Link>
                   </div>
                 ))
               ) : (
