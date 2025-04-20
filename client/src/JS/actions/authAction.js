@@ -1,6 +1,6 @@
 // Importing the necessary modules and action types
 import axios from 'axios';
-import { CURRENT_AUTH, FAIL_AUTH, LOAD_AUTH, LOGOUT_AUTH, SUCCESS_AUTH } from '../actionTypes/authActionTypes';
+import { CLEAR_ERRORS_AUTH, CLEAR_SUCCESS_AUTH, CURRENT_AUTH, FAIL_AUTH, LOAD_AUTH, LOGOUT_AUTH, SUCCESS_AUTH } from '../actionTypes/authActionTypes';
 
 
 //! Action creators
@@ -49,4 +49,14 @@ export const currentUser = () => async (dispatch) => {
 export const logout = (navigate) => (dispatch) => {
     dispatch({ type: LOGOUT_AUTH });
     navigate('/');
+};
+
+// Clear errors
+export const clearErrors = () => {
+    return { type: CLEAR_ERRORS_AUTH }
+};
+
+// Clear success
+export const clearSuccess = () => {
+    return { type: CLEAR_SUCCESS_AUTH }
 };
