@@ -16,8 +16,10 @@ import AllOrders from './components/AllOrders';
 import Cart from './components/Cart';
 import OrderDetails from './pages/OrderDetails';
 import Users from './pages/Users';
-import ErrorToast from './components/ErrorToast';
-import SuccessToast from './components/SuccessToast';
+
+import AuthSuccessToast from './components/AuthSuccessToast';
+import AuthErrorToast from './components/AuthErrorToast';
+
 
 
 function App() {
@@ -25,8 +27,8 @@ function App() {
   const dispatch = useDispatch();
   const user = useSelector(state => state.authReducer.user);
   const isAuth = useSelector(state => state.authReducer.isAuth);
-  const errors = useSelector(state => state.authReducer.errors);
-  const success = useSelector(state => state.authReducer.success);
+  const authErrors = useSelector(state => state.authReducer.errors);
+  const authSuccess = useSelector(state => state.authReducer.success);
   
   // If the user is already authenticated
   useEffect(() => {
@@ -37,8 +39,8 @@ function App() {
   
   return (
     <div className="App">
-      <SuccessToast success = {success} />
-      <ErrorToast errors = {errors} />
+      <AuthSuccessToast success = {authSuccess} />
+      <AuthErrorToast errors = {authErrors} />
 
 {/* Navbar  */}
       <NavBar />

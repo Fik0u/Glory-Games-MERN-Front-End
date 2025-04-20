@@ -3,15 +3,19 @@ import { useDispatch } from 'react-redux';
 import { toast, ToastContainer } from 'react-toastify';
 import { clearErrors } from '../JS/actions/authAction';
 
-const ErrorToast = ({ errors }) => {
+const AuthErrorToast = ({ errors }) => {
 
     const dispatch = useDispatch();
 
     useEffect(() => {
+      let timer;
+      
       if (Array.isArray(errors) && errors.length > 0) {
-      errors.forEach(error => {
-        if (!toast.isActive(error.msg)) {
+      errors.forEach((error, i) => {
+        const toastId = `error-${i}-${error.msg.slice(0,20)}`
+        if (!toast.isActive(toastId)) {
         toast.error(error.msg, {
+          toastId,
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -20,17 +24,19 @@ const ErrorToast = ({ errors }) => {
           draggable: true,
           progress: undefined,
           theme: "dark",
-          toastId: error.msg });
+          });
         }
     });
 
       const timer = setTimeout(() => {
         dispatch(clearErrors())
       }, 5000);
-
-      return () => clearTimeout(timer);
-  }
+    }
+      return () => {
+        if (timer) clearTimeout(timer);
   
+      }
+
     }, [errors, dispatch]);
 
   return (
@@ -42,4 +48,4 @@ const ErrorToast = ({ errors }) => {
   )
 }
 
-export default ErrorToast
+export default AuthErrorToast

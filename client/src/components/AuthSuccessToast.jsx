@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { toast, ToastContainer } from 'react-toastify';
 import { clearSuccess } from '../JS/actions/authAction';
 
-const SuccessToast = ({ success }) => {
+const AuthSuccessToast = ({ success }) => {
 
     const dispatch = useDispatch();
 
@@ -43,4 +43,4 @@ const SuccessToast = ({ success }) => {
   )
 }
 
-export default SuccessToast
+export default AuthSuccessToast
