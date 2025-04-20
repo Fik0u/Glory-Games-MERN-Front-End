@@ -1,4 +1,6 @@
 const User = require('../model/User');
+const Order = require('../model/Order');
+const Cart = require('../model/Cart');
 
 // Get users list
 exports.allUsers = async (req, res) => {
@@ -31,8 +33,14 @@ exports.deleteUser = async (req, res) => {
         const deletedUser = await User.findByIdAndDelete(id);
         if (!deletedUser) {
             return res.status(404).json({ errors: { msg: 'User not found 🤷‍♂️' }})
-        }
-        res.status(200).json({ success: {msg: 'User deleted successfully 🫡' }, deletedUser })
+        };
+        // To delete this user's orders also
+        await Order.deleteMany({ user: id });
+
+        // To also delete his cart
+        await Cart.deleteOne ({ user: id });
+
+        res.status(200).json({ success: {msg: 'User & related data deleted successfully 🫡' }, deletedUser })
     } catch (error) {
         res.status(400).json({ errors: { msg: "Couldn't delete the user 🙁" }})
     }
