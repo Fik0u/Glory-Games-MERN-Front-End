@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { addOrder } from '../JS/actions/orderAction';
 
 const AddOrder = () => {
@@ -15,6 +16,7 @@ const AddOrder = () => {
     const [processing, setProcessing] = useState(false);
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleInputChange = (e) => {
       const { name, value } = e.target;
@@ -41,7 +43,7 @@ const AddOrder = () => {
         paymentMethod: orderDetails.paymentMethod
       };
 
-      dispatch(addOrder(newOrder));
+      dispatch(addOrder(newOrder, navigate));
       alert('Order placed successfully 🫡')
       setProcessing(false)
     };

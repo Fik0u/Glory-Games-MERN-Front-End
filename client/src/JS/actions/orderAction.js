@@ -1,7 +1,7 @@
 // The necessary imports
 import axios from 'axios';
 import { ADD_ORDER, FAIL_ORDER, GET_ALL_ORDERS, GET_MY_ORDERS, GET_ONE_ORDER, LOAD_ORDER, UPDATE_STATUS_ORDER } from "../actionTypes/orderActionTypes";
-
+import { clearCart } from './cartAction';
 
 
 //! Action Creators
@@ -18,6 +18,7 @@ export const addOrder = (newOrder, navigate) => async (dispatch) => {
 
         const result = await axios.post('/api/order/addOrder', newOrder, config);
         dispatch({ type: ADD_ORDER, payload: result.data });
+        dispatch(clearCart());
         navigate('/profile')
     } catch (error) {
         const errorMsg = error.response && error.response.data && error.response.data.errors 
