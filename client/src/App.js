@@ -15,6 +15,7 @@ import AddOrder from './components/AddOrder';
 import AllOrders from './components/AllOrders';
 import Cart from './components/Cart';
 import OrderDetails from './pages/OrderDetails';
+import Users from './pages/Users';
 
 
 function App() {
@@ -55,10 +56,13 @@ function App() {
           </>
         )}
         
-        {user && user.isAdmin &&
-        <Route path = '/admin' element = { <Dashboard /> } />}
-        {user && user.isAdmin && 
-        <Route path = '/admin/orders' element = { <AllOrders /> } />}
+        {user && user.isAdmin && (
+          <>
+            <Route path = '/admin' element = { <Dashboard /> } />
+            <Route path = '/admin/orders' element = { <AllOrders /> } />
+            <Route path = '/admin/users' element = { <Users /> } />
+          </>
+        )}
         <Route path = '/*' element = { <Error /> } />
       </Routes>
       

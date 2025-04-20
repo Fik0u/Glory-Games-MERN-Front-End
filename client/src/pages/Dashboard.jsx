@@ -12,6 +12,9 @@ const Dashboard = () => {
       <Link to={'/admin/orders'} style={{ padding: "5px 10px", background: "#4CAF50", color: "white", borderRadius: "5px", textDecoration: "none" }}>
           View Orders List
       </Link>
+      <Link to={'/admin/users'} style={{ padding: "5px 10px", background: "#4CAF50", color: "white", borderRadius: "5px", textDecoration: "none" }}>
+          View Users List
+      </Link>
     </div>
   )
 }
