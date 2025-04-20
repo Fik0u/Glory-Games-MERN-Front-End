@@ -8,7 +8,7 @@ const SuccessToast = ({ success }) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if (Array.isArray(success.success)) {
+        if (Array.isArray(success.success) && success.success.length > 0) {
             success.success.forEach(elt => {
                 if (!toast.isActive(elt.msg)) {
             toast.success(elt.msg, {
@@ -20,15 +20,17 @@ const SuccessToast = ({ success }) => {
                 draggable: true,
                 progress: undefined,
                 theme: "dark",
-                toastId: elt.msg })
+                toastId: elt.msg });
 
         }
     });
+    
+    const timer = setTimeout(() => {
+        dispatch(clearSuccess())
+    }, 5000);
+    
+    return () => clearTimeout(timer);
 }
-        const timer = setTimeout(() => {
-            dispatch(clearSuccess())
-        }, 5000);
-        return () => clearTimeout(timer);
 
     }, [success, dispatch]);
 

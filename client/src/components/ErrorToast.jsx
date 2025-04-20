@@ -8,7 +8,9 @@ const ErrorToast = ({ errors }) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
+      if (Array.isArray(errors) && errors.length > 0) {
       errors.forEach(error => {
+        if (!toast.isActive(error.msg)) {
         toast.error(error.msg, {
           position: "top-right",
           autoClose: 5000,
@@ -18,14 +20,17 @@ const ErrorToast = ({ errors }) => {
           draggable: true,
           progress: undefined,
           theme: "dark",
-          toastId: error.msg })
-      });
+          toastId: error.msg });
+        }
+    });
 
       const timer = setTimeout(() => {
         dispatch(clearErrors())
       }, 5000);
-      return () => clearTimeout(timer);
 
+      return () => clearTimeout(timer);
+  }
+  
     }, [errors, dispatch]);
 
   return (
