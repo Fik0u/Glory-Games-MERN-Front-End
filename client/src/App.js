@@ -17,6 +17,7 @@ import Cart from './components/Cart';
 import OrderDetails from './pages/OrderDetails';
 import Users from './pages/Users';
 import ErrorToast from './components/ErrorToast';
+import SuccessToast from './components/SuccessToast';
 
 
 function App() {
@@ -25,7 +26,8 @@ function App() {
   const user = useSelector(state => state.authReducer.user);
   const isAuth = useSelector(state => state.authReducer.isAuth);
   const errors = useSelector(state => state.authReducer.errors);
-
+  const success = useSelector(state => state.authReducer.success);
+  
   // If the user is already authenticated
   useEffect(() => {
     if (localStorage.getItem('token')) {
@@ -35,7 +37,7 @@ function App() {
   
   return (
     <div className="App">
-
+      <SuccessToast success = {success} />
       <ErrorToast errors = {errors} />
 
 {/* Navbar  */}
