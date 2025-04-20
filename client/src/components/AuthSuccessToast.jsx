@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { clearSuccess } from '../JS/actions/authAction';
 
 const AuthSuccessToast = ({ success }) => {
@@ -34,13 +34,7 @@ const AuthSuccessToast = ({ success }) => {
 
     }, [success, dispatch]);
 
-  return (
-    <div>
-      
-        <ToastContainer />
-
-    </div>
-  )
+  return null
 }
 
 export default AuthSuccessToast

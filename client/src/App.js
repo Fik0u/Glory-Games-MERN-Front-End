@@ -19,6 +19,7 @@ import Users from './pages/Users';
 
 import AuthSuccessToast from './components/AuthSuccessToast';
 import AuthErrorToast from './components/AuthErrorToast';
+import { ToastContainer } from 'react-toastify';
 
 
 
@@ -39,6 +40,9 @@ function App() {
   
   return (
     <div className="App">
+
+      <ToastContainer />
+
       <AuthSuccessToast success = {authSuccess} />
       <AuthErrorToast errors = {authErrors} />
 
