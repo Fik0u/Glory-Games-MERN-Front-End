@@ -1,6 +1,7 @@
 // The necessary imports
 import axios from 'axios';
 import { ADD_TO_CART, CLEAR_CART, LOAD_CART, REMOVE_FROM_CART, UPDATE_CART_ITEM } from '../actionTypes/cartActionTypes';
+import { setErrorToast, setSuccessToast } from './toastAction';
 
 //! Action Creators
 
@@ -15,8 +16,10 @@ export const addToCart = (product, quantity) => async (dispatch, getState) => {
         };
         const result = await axios.post('/api/cart/addToCart', { productId: product._id, quantity }, config);
         dispatch({ type: ADD_TO_CART, payload: { product, quantity }});
+        dispatch(setSuccessToast('Product added to cart'));
         localStorage.setItem('cartItems', JSON.stringify(getState().cartReducer.cartItems));
     } catch (error) {
+        dispatch(setErrorToast("Couldn't add product to cart"))
         console.error(error);
     }
 };

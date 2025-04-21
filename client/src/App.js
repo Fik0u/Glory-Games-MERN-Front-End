@@ -17,9 +17,9 @@ import Cart from './components/Cart';
 import OrderDetails from './pages/OrderDetails';
 import Users from './pages/Users';
 
-import AuthSuccessToast from './components/AuthSuccessToast';
-import AuthErrorToast from './components/AuthErrorToast';
+
 import { ToastContainer } from 'react-toastify';
+import ToastManager from './components/ToastManager';
 
 
 
@@ -28,8 +28,7 @@ function App() {
   const dispatch = useDispatch();
   const user = useSelector(state => state.authReducer.user);
   const isAuth = useSelector(state => state.authReducer.isAuth);
-  const authErrors = useSelector(state => state.authReducer.errors);
-  const authSuccess = useSelector(state => state.authReducer.success);
+
   
   // If the user is already authenticated
   useEffect(() => {
@@ -41,10 +40,9 @@ function App() {
   return (
     <div className="App">
 
-      <ToastContainer />
+      <ToastContainer position="top-right" autoClose={3000} />
+      <ToastManager />
 
-      <AuthSuccessToast success = {authSuccess} />
-      <AuthErrorToast errors = {authErrors} />
 
 {/* Navbar  */}
       <NavBar />

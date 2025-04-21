@@ -1,6 +1,7 @@
 // Importing the necessary modules and action types
 import axios from 'axios';
 import { CLEAR_ERRORS_AUTH, CLEAR_SUCCESS_AUTH, CURRENT_AUTH, FAIL_AUTH, LOAD_AUTH, LOGOUT_AUTH, SUCCESS_AUTH } from '../actionTypes/authActionTypes';
+import { setErrorToast, setSuccessToast } from './toastAction';
 
 
 //! Action creators
@@ -11,9 +12,20 @@ export const register = (newUser, navigate) => async (dispatch) => {
     try {
         const result = await axios.post('/api/auth/register', newUser);
         dispatch({ type: SUCCESS_AUTH, payload: result.data });
+        dispatch(setSuccessToast('User successfully registerd'));
         navigate('/profile')
     } catch (error) {
         dispatch({ type: FAIL_AUTH, payload: error.response.data.errors });
+        const errorResponse = error.response.data;
+        if (errorResponse) {
+            errorResponse.errors.forEach((e,i) => {
+                setTimeout(() => {
+                    dispatch(setErrorToast(e.msg)) 
+                }, i * 300)
+            })
+        } else {
+            dispatch(setErrorToast("Registration failed"))
+        }
     }
 };
 
@@ -22,10 +34,23 @@ export const login = (user, navigate) => async (dispatch) => {
     dispatch({ type: LOAD_AUTH });
     try {
         const result = await axios.post('/api/auth/login', user);
+
         dispatch({ type: SUCCESS_AUTH, payload: result.data });
+        const fullName = result.data.user.fullName
+        dispatch(setSuccessToast(`Welcome back ${fullName} 😎`));
         navigate('/profile')
     } catch (error) {
         dispatch({ type: FAIL_AUTH, payload: error.response.data.errors });
+        const errorResponse = error.response.data;
+        if (errorResponse) {
+            errorResponse.errors.forEach((e,i) => {
+                setTimeout(() => {
+                    dispatch(setErrorToast(e.msg))
+                }, i * 300)
+            })
+        } else {
+            dispatch(setErrorToast("Login failed"))
+        }
     }
 };
 

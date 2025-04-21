@@ -1,0 +1,4 @@
+
+export const SET_SUCCESS_TOAST = 'SET_SUCCESS_TOAST';
+export const SET_ERROR_TOAST = 'SET_ERROR_TOAST';
+export const CLEAR_TOASTS = 'CLEAR_TOASTS';
