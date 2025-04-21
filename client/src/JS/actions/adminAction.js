@@ -2,6 +2,7 @@
 // The necessary imports
 import axios from 'axios';
 import { DELETE_USER, FAIL_USER, GET_ALL_USERS, GET_USER, LOAD_USER } from "../actionTypes/adminActionTypes";
+import { setErrorToast, setSuccessToast } from './toastAction';
 
 
 
@@ -50,7 +51,9 @@ export const deleteUser = (id) => async (dispatch) => {
         };
         const result = await axios.delete(`/api/admin/${id}`, config);
         dispatch({ type: DELETE_USER, payload: result.data.deletedUser });
+        dispatch(setSuccessToast('User deleted successfully 💀'))
     } catch (error) {
-        dispatch({ type: FAIL_USER, payload: error.response.data.errors })
+        dispatch({ type: FAIL_USER, payload: error.response.data.errors });
+        dispatch(setErrorToast("Couldn't delete user 😢"));
     }
 };

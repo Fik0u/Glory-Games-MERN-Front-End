@@ -44,7 +44,6 @@ const AddOrder = () => {
       };
 
       dispatch(addOrder(newOrder, navigate));
-      alert('Order placed successfully 🫡')
       setProcessing(false)
     };
 

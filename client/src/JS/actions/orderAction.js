@@ -2,6 +2,7 @@
 import axios from 'axios';
 import { ADD_ORDER, FAIL_ORDER, GET_ALL_ORDERS, GET_MY_ORDERS, GET_ONE_ORDER, LOAD_ORDER, UPDATE_STATUS_ORDER } from "../actionTypes/orderActionTypes";
 import { clearCart } from './cartAction';
+import { setErrorToast, setSuccessToast } from './toastAction';
 
 
 //! Action Creators
@@ -19,12 +20,11 @@ export const addOrder = (newOrder, navigate) => async (dispatch) => {
         const result = await axios.post('/api/order/addOrder', newOrder, config);
         dispatch({ type: ADD_ORDER, payload: result.data });
         dispatch(clearCart());
+        dispatch(setSuccessToast('Order placed successfully 🫡'))
         navigate('/profile')
     } catch (error) {
-        const errorMsg = error.response && error.response.data && error.response.data.errors 
-        ? error.response.data.errors
-        : error.message;
-        dispatch({ type: FAIL_ORDER, payload: errorMsg })
+        dispatch({ type: FAIL_ORDER, payload: error.response.data.errors || error.message });
+        dispatch(setErrorToast('Failed to place order 🫤'))
     }
 };
 
@@ -88,7 +88,9 @@ export const updateOrderStatus = (id, status) => async (dispatch) => {
         };
         const result = await axios.put(`/api/order/${id}`, { status }, config);
         dispatch({ type: UPDATE_STATUS_ORDER, payload: result.data.order });
+        dispatch(setSuccessToast(`Order marked as ${status}`));
     } catch (error) {
-        dispatch({ type: FAIL_ORDER, payload: error.response.data.errors || error.message })
+        dispatch({ type: FAIL_ORDER, payload: error.response.data.errors || error.message });
+        dispatch(setErrorToast("Failed to update order status"));
     }
 };

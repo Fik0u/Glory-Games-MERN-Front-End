@@ -38,8 +38,10 @@ export const updateCartItem = (id, quantity) => async (dispatch, getState) => {
 
         dispatch({ type: UPDATE_CART_ITEM, payload: { id, quantity }
         });
+        dispatch(setSuccessToast('Product quantity updated'));
         localStorage.setItem('cartItems', JSON.stringify(getState().cartReducer.cartItems));
     } catch (error) {
+        dispatch(setErrorToast('Failed to update product'))
         console.error(error)
     }
 };
@@ -55,8 +57,10 @@ export const removeFromCart = (id) => async (dispatch, getState) => {
         };
         const result = await axios.delete(`/api/cart/${id}`, config);
         dispatch({ type: REMOVE_FROM_CART, payload: id });
+        dispatch(setSuccessToast('Product removed from cart'));
         localStorage.setItem('cartItems', JSON.stringify(getState().cartReducer.cartItems));
     } catch (error) {
+        dispatch(setErrorToast('Failed to remove product'))
         console.error(error)
     }
 
@@ -73,8 +77,10 @@ export const clearCart = () => async (dispatch) => {
         };
         const result = await axios.put('/api/cart/clearCart', {}, config);
         dispatch({ type: CLEAR_CART });
+        dispatch(setSuccessToast('Cart cleared successfully'))
         localStorage.removeItem('cartItems');
     } catch (error) {
+        dispatch(setErrorToast('Failed to clear cart'))
         console.error(error);
     }
 
