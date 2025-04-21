@@ -47,7 +47,7 @@ const NavBar = () => {
                     <Nav.Link href="/register">Register</Nav.Link>
                 </>
             )}
-            {user.isAdmin && <Nav.Link href='/admin'>Dashboard</Nav.Link>}
+            {user && user.isAdmin && <Nav.Link href='/admin'>Dashboard</Nav.Link>}
           </Nav>
         </Container>
       </Navbar>

@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 
 require('dotenv').config();
 
@@ -29,6 +30,11 @@ app.use('/api/order', require('./routes/order.route'));
 
 // Cart routes
 app.use('/api/cart', require('./routes/cart.route'));
+
+// To serve static files from 'uploads' folder
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+
 
 
 //Port

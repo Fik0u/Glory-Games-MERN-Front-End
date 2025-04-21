@@ -1,6 +1,6 @@
 // Importing the necessary modules and action types
 import axios from 'axios';
-import { CLEAR_ERRORS_AUTH, CLEAR_SUCCESS_AUTH, CURRENT_AUTH, FAIL_AUTH, LOAD_AUTH, LOGOUT_AUTH, SUCCESS_AUTH } from '../actionTypes/authActionTypes';
+import { CURRENT_AUTH, FAIL_AUTH, LOAD_AUTH, LOGOUT_AUTH, SUCCESS_AUTH, UPDATE_USER_PROFILE } from '../actionTypes/authActionTypes';
 import { setErrorToast, setSuccessToast } from './toastAction';
 
 
@@ -76,12 +76,16 @@ export const logout = (navigate) => (dispatch) => {
     navigate('/');
 };
 
-// Clear errors
-export const clearErrors = () => {
-    return { type: CLEAR_ERRORS_AUTH }
-};
-
-// Clear success
-export const clearSuccess = () => {
-    return { type: CLEAR_SUCCESS_AUTH }
+// Update user profile
+export const updateUserProfile = (formData) => async (dispatch) => {
+    dispatch({ type: LOAD_AUTH });
+    try {
+        const result = await axios.post('/api/auth/updateProfile', formData, {
+            headers: { 'Content-Type': 'multipart/form-data', Authorization: localStorage.getItem('token')}
+        });
+        
+        dispatch({ type: UPDATE_USER_PROFILE, payload: result.data.user })
+    } catch (error) {
+        dispatch({ type: FAIL_AUTH, payload: error.response.data.errors });
+    }
 };

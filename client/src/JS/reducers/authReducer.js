@@ -1,5 +1,5 @@
 // Importing the necessary modules
-import { CLEAR_ERRORS_AUTH, CLEAR_SUCCESS_AUTH, CURRENT_AUTH, FAIL_AUTH, LOAD_AUTH, LOGOUT_AUTH, SUCCESS_AUTH } from "../actionTypes/authActionTypes";
+import { CURRENT_AUTH, FAIL_AUTH, LOAD_AUTH, LOGOUT_AUTH, SUCCESS_AUTH, UPDATE_USER_PROFILE } from "../actionTypes/authActionTypes";
 
 
 const initialState = {
@@ -28,9 +28,7 @@ const authReducer = (state = initialState, { type, payload }) => {
         
         case FAIL_AUTH: return { ...state, isLoad: false, errors: payload };
 
-        case CLEAR_SUCCESS_AUTH: return { ...state, success: [] };
-
-        case CLEAR_ERRORS_AUTH: return { ...state, errors: [] };
+        case UPDATE_USER_PROFILE: return { ...state, isLoad: false, user: { ...state.user, profilePicture : payload.profilePicture }};
             
         default: return state;
     }

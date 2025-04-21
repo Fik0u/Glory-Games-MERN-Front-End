@@ -1,8 +1,8 @@
 const express = require('express');
-const { register, login } = require('../controllers/auth.controller');
+const { register, login, updateProfilePicture } = require('../controllers/auth.controller');
 const { registerValidation, loginValidation, validate } = require('../middleware/validator');
 const isAuth = require('../middleware/isAuth');
-
+const upload = require('../middleware/multer');
 
 
 const router = express.Router();
@@ -23,5 +23,9 @@ router.post('/login', loginValidation(), validate, login)
 router.get('/current', isAuth, (req, res) => {
     res.json(req.user);
 });
+
+// Update profile picture
+router.post('/updateProfile', isAuth, upload.single('picture'), updateProfilePicture);
+
 
 module.exports = router;

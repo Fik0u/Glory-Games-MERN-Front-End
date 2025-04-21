@@ -6,6 +6,5 @@ export const FAIL_AUTH = 'FAIL_AUTH';
 export const CURRENT_AUTH = 'CURRENT_AUTH';
 export const LOGOUT_AUTH = 'LOGOUT_AUTH';
 
-// These are the constants related to the Toasts of success & errors
-export const CLEAR_SUCCESS_AUTH = 'CLEAR_SUCCESS_AUTH';
-export const CLEAR_ERRORS_AUTH = 'CLEAR_ERRORS_AUTH';
+// This is a constant to update the user profile picture
+export const UPDATE_USER_PROFILE = 'UPDATE_USER_PROFILE';

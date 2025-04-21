@@ -53,4 +53,23 @@ exports.login = async (req, res) => {
     } catch (error) {
         res.status(400).json({ errors: [{ msg: 'Login failed' }], error });
     }
-}
+};
+
+// Update profile picture
+exports.updateProfilePicture = async (req, res) => {
+    try {
+        const user = await User.findById(req.user._id);
+        if (!user) {
+            return res.status(404).json({ msg: 'User not found'})
+        };
+        if (!req.file) {
+            return res.status(400).json({ msg: 'No file uploaded'})
+        };
+
+        user.profilePicture = `/uploads/${req.file.filename}`
+        await user.save();
+        res.status(200).json({ msg: 'Profile picture updated successfully', user })
+    } catch (error) {
+        res.status(400).json({ msg: "Couldn't update profile picture"})
+    }
+};
