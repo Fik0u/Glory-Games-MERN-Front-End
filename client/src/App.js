@@ -20,6 +20,7 @@ import Users from './pages/Users';
 
 import { ToastContainer } from 'react-toastify';
 import ToastManager from './components/ToastManager';
+import SpinLoad from './components/SpinLoad';
 
 
 
@@ -29,7 +30,12 @@ function App() {
   const user = useSelector(state => state.authReducer.user);
   const isAuth = useSelector(state => state.authReducer.isAuth);
 
-  
+  const authLoad = useSelector(state => state.authReducer.isLoad);
+  const adminLoad = useSelector(state => state.adminReducer.isLoad);
+  const cartLoad = useSelector(state => state.cartReducer.isLoad);
+  const orderLoad = useSelector(state => state.orderReducer.isLoad);
+  const prodLoad = useSelector(state => state.prodReducer.isLoad);
+
   // If the user is already authenticated
   useEffect(() => {
     if (localStorage.getItem('token')) {
@@ -39,10 +45,11 @@ function App() {
   
   return (
     <div className="App">
+    {(authLoad || adminLoad || cartLoad || orderLoad || prodLoad) && <SpinLoad />}
 
+      {/* Globan Toasts Manager  */}
       <ToastContainer position="top-right" autoClose={3000} />
       <ToastManager />
-
 
 {/* Navbar  */}
       <NavBar />
