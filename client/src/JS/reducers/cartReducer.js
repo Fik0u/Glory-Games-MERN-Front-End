@@ -1,4 +1,4 @@
-import { ADD_TO_CART, CLEAR_CART, LOAD_CART, REMOVE_FROM_CART, UPDATE_CART_ITEM } from "../actionTypes/cartActionTypes";
+import { ADD_TO_CART, CLEAR_CART, FAIL_CART, LOAD_CART, REMOVE_FROM_CART, UPDATE_CART_ITEM } from "../actionTypes/cartActionTypes";
 
 
 const cartItemsFromStorage = localStorage.getItem('cartItems')
@@ -47,6 +47,8 @@ const cartReducer = (state = initialState, { type, payload }) => {
         };
 
         case CLEAR_CART: return { ...state, isLoad: false, cartItems: [], totalAmount: 0 };
+
+        case FAIL_CART: return { ...state, isLoad: false };
     
         default: return state;
     }

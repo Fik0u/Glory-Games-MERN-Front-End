@@ -1,6 +1,6 @@
 // The necessary imports
 import axios from 'axios';
-import { ADD_TO_CART, CLEAR_CART, LOAD_CART, REMOVE_FROM_CART, UPDATE_CART_ITEM } from '../actionTypes/cartActionTypes';
+import { ADD_TO_CART, CLEAR_CART, FAIL_CART, LOAD_CART, REMOVE_FROM_CART, UPDATE_CART_ITEM } from '../actionTypes/cartActionTypes';
 import { setErrorToast, setSuccessToast } from './toastAction';
 
 //! Action Creators
@@ -19,8 +19,8 @@ export const addToCart = (product, quantity) => async (dispatch, getState) => {
         dispatch(setSuccessToast('Product added to cart'));
         localStorage.setItem('cartItems', JSON.stringify(getState().cartReducer.cartItems));
     } catch (error) {
-        dispatch(setErrorToast("Couldn't add product to cart"))
-        console.error(error);
+        dispatch({ type: FAIL_CART });
+        dispatch(setErrorToast("You must be logged in to do this 🫤"))
     }
 };
 
@@ -41,8 +41,8 @@ export const updateCartItem = (id, quantity) => async (dispatch, getState) => {
         dispatch(setSuccessToast('Product quantity updated'));
         localStorage.setItem('cartItems', JSON.stringify(getState().cartReducer.cartItems));
     } catch (error) {
+        dispatch({ type: FAIL_CART });
         dispatch(setErrorToast('Failed to update product'))
-        console.error(error)
     }
 };
 
@@ -60,8 +60,8 @@ export const removeFromCart = (id) => async (dispatch, getState) => {
         dispatch(setSuccessToast('Product removed from cart'));
         localStorage.setItem('cartItems', JSON.stringify(getState().cartReducer.cartItems));
     } catch (error) {
+        dispatch({ type: FAIL_CART });
         dispatch(setErrorToast('Failed to remove product'))
-        console.error(error)
     }
 
 };
@@ -80,8 +80,8 @@ export const clearCart = () => async (dispatch) => {
         dispatch(setSuccessToast('Cart cleared successfully'))
         localStorage.removeItem('cartItems');
     } catch (error) {
+        dispatch({ type: FAIL_CART });
         dispatch(setErrorToast('Failed to clear cart'))
-        console.error(error);
     }
 
 };
