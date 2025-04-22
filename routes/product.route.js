@@ -1,5 +1,5 @@
 const express = require('express');
-const { addProduct, getProducts, getOne, editProduct, deleteProduct } = require('../controllers/product.controller');
+const { addProduct, getProducts, getOne, editProduct, deleteProduct, searchProducts } = require('../controllers/product.controller');
 const isAdmin = require('../middleware/isAdmin');
 
 
@@ -17,6 +17,9 @@ router.post('/addProd', isAdmin, addProduct);
 
 // Get Products List Route
 router.get('/getProds', getProducts);
+
+// Search Product Route
+router.get('/searchProd', searchProducts);
 
 // Get One Product Route
 router.get('/:id', getOne);

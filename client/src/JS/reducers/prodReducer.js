@@ -1,5 +1,5 @@
 // imports of the constants defined in the action types
-import { LOAD_PRODUCT, ADD_PRODUCT, DELETE_PRODUCT, EDIT_PRODUCT, FAIL_PRODUCT, GET_ONE_PRODUCT, GET_PRODUCTS } from '../actionTypes/prodActionTypes';
+import { LOAD_PRODUCT, ADD_PRODUCT, DELETE_PRODUCT, EDIT_PRODUCT, FAIL_PRODUCT, GET_ONE_PRODUCT, GET_PRODUCTS, SEARCH_PRODUCTS } from '../actionTypes/prodActionTypes';
 
 const initialState = {
     isLoad: false,
@@ -17,6 +17,8 @@ const prodReducer = (state = initialState, { type, payload }) => {
         case ADD_PRODUCT: return { ...state, isLoad: false, prodsList: [ ...state.prodsList, payload], success: true };
 
         case GET_PRODUCTS: return { ...state, isLoad: false, prodsList: payload };
+
+        case SEARCH_PRODUCTS: return { ...state, isLoad: false, prodsList: payload };
 
         case GET_ONE_PRODUCT: return { ...state, isLoad: false, prod: payload };
 

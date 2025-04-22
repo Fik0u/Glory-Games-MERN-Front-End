@@ -1,5 +1,6 @@
 const Product = require("../model/Product");
 
+
 // 🔹 POST : Add new product
 exports.addProduct = async (req, res) => {
     try {
@@ -20,6 +21,26 @@ exports.getProducts = async (req, res) => {
         res.status(400).json({ msg: "Couldn't find the products list", error });
     }
 };
+
+// 🔹 GET : Search Product
+exports.searchProducts = async (req, res) => {
+    try {
+        const keyword = req.query.keyword 
+    ? {
+        name: {
+            $regex: req.query.keyword,
+            $options: 'i'
+        }
+    }
+    : {};
+
+    const products = await Product.find({ ...keyword }).select('name price image');
+        res.status(200).json({ msg: 'Products found successfully 😃', products});
+    } catch (error) {
+        res.status(400).json({ msg: "Couldn't search the products 🙁"})
+    }
+};
+
 
 // 🔹 GET : One product
 exports.getOne = async (req, res) => {
@@ -70,3 +91,5 @@ exports.deleteProduct = async (req, res) => {
         res.status(400).json({ msg: 'Error deleting product', error });
     }
 };
+
+

@@ -1,6 +1,6 @@
 // Imports of the necessary modules
 import axios from 'axios';
-import { ADD_PRODUCT, DELETE_PRODUCT, EDIT_PRODUCT, FAIL_PRODUCT, GET_ONE_PRODUCT, GET_PRODUCTS, LOAD_PRODUCT } from "../actionTypes/prodActionTypes";
+import { ADD_PRODUCT, DELETE_PRODUCT, EDIT_PRODUCT, FAIL_PRODUCT, GET_ONE_PRODUCT, GET_PRODUCTS, LOAD_PRODUCT, SEARCH_PRODUCTS } from "../actionTypes/prodActionTypes";
 
 
 
@@ -33,6 +33,18 @@ export const getProds = () => async (dispatch) => {
         dispatch({ type: FAIL_PRODUCT, payload: error.response.data })
     }
 };
+
+// Search products
+export const searchProducts = (keyword) => async (dispatch) => {
+    dispatch({ type: LOAD_PRODUCT});
+    try {
+        const result = await axios.get(`/api/product/searchProd?keyword=${keyword}`);
+        dispatch({ type: SEARCH_PRODUCTS, payload: result.data.products })
+    } catch (error) {
+        dispatch({ type: FAIL_PRODUCT, payload: error.response.data })
+    }
+};
+
 
 // Get one product
 export const getOneProd = (id) => async (dispatch) => {
