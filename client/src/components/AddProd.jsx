@@ -7,15 +7,17 @@ const AddProd = () => {
     const [newProd, setNewProd] = useState({
         name: '',
         description: '',
-        price: 0
+        category: '',
+        subCategory: '',
+        price: 0,
+        image: ''
     });
     
     const dispatch = useDispatch();
 
     const handleChange = (e) => {
         setNewProd({ ...newProd, [e.target.name]: e.target.value });
-    }
-    // console.log(newProd)
+    };
 
     const handleAdd = (e) => {
         e.preventDefault();
@@ -29,11 +31,25 @@ const AddProd = () => {
         <Form.Group className="mb-3">
           <Form.Control type='text' placeholder="Name" name='name' value={newProd.name} onChange={handleChange} />
         </Form.Group>
+
         <Form.Group className="mb-3">
           <Form.Control type='text' placeholder="Description" name='description' value={newProd.description} onChange={handleChange} />
+          </Form.Group>
+
+          <Form.Group className="mb-3">
+          <Form.Control type='text' placeholder="Category" name='category' value={newProd.category} onChange={handleChange} />
         </Form.Group>
+
+          <Form.Group className="mb-3">
+          <Form.Control type='text' placeholder="Sub-category" name='subCategory' value={newProd.subCategory} onChange={handleChange} />
+        </Form.Group>
+
         <Form.Group className="mb-3">
           <Form.Control type='number' placeholder="Price" name='price' value={newProd.price} onChange={handleChange} />
+        </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Form.Control type='text' placeholder="Image" name='image' value={newProd.image} onChange={handleChange} />
         </Form.Group>
         
         <Button type="submit">Add Product</Button>
