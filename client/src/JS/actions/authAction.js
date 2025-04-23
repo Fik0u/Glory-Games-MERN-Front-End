@@ -36,9 +36,9 @@ export const login = (user, navigate) => async (dispatch) => {
         const result = await axios.post('/api/auth/login', user);
 
         dispatch({ type: SUCCESS_AUTH, payload: result.data });
-        const fullName = result.data.user.fullName
-        dispatch(setSuccessToast(`Welcome back ${fullName} 😎`));
-        navigate('/profile')
+        const username = result.data.user.username
+        dispatch(setSuccessToast(`Welcome back ${username} 😎`));
+        navigate('/')
     } catch (error) {
         dispatch({ type: FAIL_AUTH, payload: error.response.data.errors });
         const errorResponse = error.response.data;

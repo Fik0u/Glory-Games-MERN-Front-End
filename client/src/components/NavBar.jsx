@@ -30,7 +30,6 @@ const NavBar = () => {
             <Nav.Link href="/">Home</Nav.Link>
             {isAuth ? (
                 <>
-                    <Nav.Link href="/profile">Profile</Nav.Link>
 
                     <Nav.Link href="/cart" className='d-flex align-items-center position-relative'>
                       <FaShoppingCart size = {24} />

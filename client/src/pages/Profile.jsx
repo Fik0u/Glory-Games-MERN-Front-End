@@ -45,7 +45,7 @@ const Profile = () => {
       backgroundColor: '#f9f9f9',
       boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
       textAlign: 'center'}}>
-      <h3> 👋 Hello { user.fullName} </h3>
+      <h3> 👋 Hello { user.username} </h3>
 
       <img src = {user.profilePicture || "https://static.vecteezy.com/system/resources/previews/019/879/186/non_2x/user-icon-on-transparent-background-free-png.png"} alt="profile" width={"200px"} height={"200px"} style={{objectFit: 'cover',
           borderRadius: '50%',

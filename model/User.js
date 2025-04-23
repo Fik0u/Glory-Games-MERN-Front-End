@@ -6,6 +6,11 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    username: {
+        type: String,
+        required: true,
+        unique: true,
+    },
     email: {
         type: String,
         required: true,
@@ -16,10 +21,10 @@ const userSchema = new mongoose.Schema({
         required: true,
     },
     address: {
-        type: String,
-    },
-    country: {
-        type: String,
+        street: String,
+        city: String,
+        postalCode: String,
+        country: String,
     },
     phone: {
         type: String,

@@ -9,9 +9,15 @@ const Register = () => {
   // The state for the new user. It'll be used to store the data entered by the user in the form
   const [newUser, setNewUser] = useState({
     fullName: '',
+    username: '',
     email: '',
     password: '',
-    address: '',
+    address: {
+      street: '',
+      city: '',
+      postalCode: '',
+      country: ''
+    },
     phone: ''
   });
 
@@ -19,7 +25,15 @@ const Register = () => {
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    setNewUser({ ...newUser, [e.target.name]: e.target.value })
+    const { name, value } = e.target;
+    if (name.startsWith('address.')) {
+      const field = name.split('.')[1];
+      setNewUser(prev => ({
+        ...prev, address: { ...prev.address, [field]: value }
+      }))
+    } else {
+      setNewUser(prev => ({ ...prev, [name]: value }))
+    }
   };
 
 
@@ -36,6 +50,7 @@ const Register = () => {
       <Form onSubmit = {handleRegister}>
       <Form.Group className="mb-3">
         <Form.Control type="text" placeholder="Enter your full name" name = 'fullName' value = {newUser.fullName} onChange = {handleChange} />
+        <Form.Control type="text" placeholder="Enter your username" name = 'username' value = {newUser.username} onChange = {handleChange} />
       </Form.Group>
       <Form.Group className="mb-3">
         <Form.Control type="email" placeholder="Enter your email" name = 'email' value = {newUser.email} onChange = {handleChange} />
@@ -44,7 +59,16 @@ const Register = () => {
         <Form.Control type="password" placeholder="Enter your password" name = 'password' value = {newUser.password} onChange = {handleChange} />
       </Form.Group>
       <Form.Group className="mb-3">
-        <Form.Control type="text" placeholder="Enter your address" name = 'address' value = {newUser.address} onChange = {handleChange} />
+        <Form.Control type="text" placeholder="Street" name = 'address.street' value = {newUser.address.street} onChange = {handleChange} />
+      </Form.Group>
+      <Form.Group className="mb-3">
+        <Form.Control type="text" placeholder="City" name = 'address.city' value = {newUser.address.city} onChange = {handleChange} />
+      </Form.Group>
+      <Form.Group className="mb-3">
+        <Form.Control type="text" placeholder="Postal Code" name = 'address.postalCode' value = {newUser.address.postalCode} onChange = {handleChange} />
+      </Form.Group>
+      <Form.Group className="mb-3">
+        <Form.Control type="text" placeholder="Country" name = 'address.country' value = {newUser.address.country} onChange = {handleChange} />
       </Form.Group>
       <Form.Group className="mb-3">
         <Form.Control type="tel" placeholder="Enter your phone number" name = 'phone' value = {newUser.phone} onChange = {handleChange} />
