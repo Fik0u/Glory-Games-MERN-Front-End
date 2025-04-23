@@ -10,6 +10,7 @@ const UserDetails = ({ show, handleClose, userId }) => {
     const user = useSelector(state => state.adminReducer.user);
 
 
+
     useEffect(() => {
 
      dispatch(getOneUser(userId))
@@ -29,8 +30,9 @@ const UserDetails = ({ show, handleClose, userId }) => {
                 <div style={{ textAlign: 'center' }}>
                     <p>{user.fullName}</p>
                     <p>{user.email}</p>
-                    <p>{user.address}</p>
-                    <p>{user.country}</p>
+                    {user.address && (
+                      <p>{user.address.street}, {user.address.city}, {user.address.postalCode}, {user.address.country}</p>
+                    )}
                     <p>{user.phone}</p>
                 </div>
 
