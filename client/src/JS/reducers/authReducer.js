@@ -28,7 +28,7 @@ const authReducer = (state = initialState, { type, payload }) => {
         
         case FAIL_AUTH: return { ...state, isLoad: false, errors: payload };
 
-        case UPDATE_USER_PROFILE: return { ...state, isLoad: false, user: { ...state.user, profilePicture : payload.profilePicture }};
+        case UPDATE_USER_PROFILE: return { ...state, isLoad: false, user: { ...state.user, ...payload }};
             
         default: return state;
     }

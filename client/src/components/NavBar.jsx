@@ -50,8 +50,6 @@ const NavBar = () => {
                     id='user-nav-dropdown'
                     align="end"
                     menuVariant='dark' 
-                    drop='down'
-                    noCaret
                     show = {showDropdown}
                     onMouseEnter = {() => setShowDropdown(true)}
                     onMouseLeave = {() => setShowDropdown(false)}
@@ -60,7 +58,7 @@ const NavBar = () => {
                     >
                     
                           <NavDropdown.Item href='/profile'> My Profile</NavDropdown.Item>
-                          <NavDropdown.Item href='/orders'> My Orders</NavDropdown.Item>
+                          <NavDropdown.Item href='/myorders'> My Orders</NavDropdown.Item>
                           <NavDropdown.Divider />
                           <NavDropdown.Item onClick={() => dispatch(logout(navigate))}>Logout</NavDropdown.Item>
                     </NavDropdown>

@@ -80,12 +80,16 @@ export const logout = (navigate) => (dispatch) => {
 export const updateUserProfile = (formData) => async (dispatch) => {
     dispatch({ type: LOAD_AUTH });
     try {
+
         const result = await axios.post('/api/auth/updateProfile', formData, {
             headers: { 'Content-Type': 'multipart/form-data', Authorization: localStorage.getItem('token')}
         });
-        
-        dispatch({ type: UPDATE_USER_PROFILE, payload: result.data.user })
+
+        dispatch({ type: UPDATE_USER_PROFILE, payload: result.data.user });
+        localStorage.setItem('user', JSON.stringify(result.data.user));
+        dispatch(setSuccessToast('User profile updated successfully'));
     } catch (error) {
-        dispatch({ type: FAIL_AUTH, payload: error.response.data.errors });
+        console.log(error)
+        dispatch({ type: FAIL_AUTH, payload: error.response.data.errors || error.message });
     }
 };

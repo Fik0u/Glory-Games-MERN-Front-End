@@ -21,6 +21,7 @@ import Users from './pages/Users';
 import { ToastContainer } from 'react-toastify';
 import ToastManager from './components/ToastManager';
 import SpinLoad from './components/SpinLoad';
+import MyOrders from './components/MyOrders';
 
 
 
@@ -64,6 +65,7 @@ function App() {
           <Route path = '/profile' element = { <Profile /> } />
           <Route path = '/order' element = { <AddOrder /> } />
           <Route path = '/cart' element = { <Cart />} />
+          <Route path = '/myorders' element = { <MyOrders />} />
           <Route path = '/order/:id' element = { <OrderDetails />} />
           </>
         ) : (

@@ -56,20 +56,24 @@ exports.login = async (req, res) => {
 };
 
 // Update profile picture
-exports.updateProfilePicture = async (req, res) => {
+exports.updateProfile = async (req, res) => {
     try {
         const user = await User.findById(req.user._id);
         if (!user) {
             return res.status(404).json({ msg: 'User not found'})
         };
-        if (!req.file) {
-            return res.status(400).json({ msg: 'No file uploaded'})
-        };
+        
+        const { fullName, email } = req.body;
 
-        user.profilePicture = `/uploads/${req.file.filename}`
+        if (fullName) user.fullName = fullName;
+
+        if (email) user.email = email;
+
+        if (req.file) user.profilePicture = `/uploads/${req.file.filename}`;
+
         await user.save();
-        res.status(200).json({ msg: 'Profile picture updated successfully', user })
+        res.status(200).json({ msg: 'Profile updated successfully', user })
     } catch (error) {
-        res.status(400).json({ msg: "Couldn't update profile picture"})
+        res.status(400).json({ msg: "Couldn't update profile "})
     }
 };
