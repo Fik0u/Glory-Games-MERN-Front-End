@@ -1,9 +1,10 @@
-import React from 'react'
-import { Badge, Container, Nav, Navbar } from 'react-bootstrap'
+import React, { useState } from 'react'
+import { Badge, Container, Image, Nav, Navbar, NavDropdown } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
 import { logout } from '../JS/actions/authAction';
 import { FaShoppingCart } from 'react-icons/fa';
+
 
 const NavBar = () => {
 
@@ -16,12 +17,14 @@ const NavBar = () => {
 
     const cartItemCount = cartItems ? cartItems.length : 0;
 
+    const [showDropdown, setShowDropdown] = useState(false);
+
   return (
     <div>
-        <Navbar bg="dark" data-bs-theme="dark">
+        <Navbar bg="dark" data-bs-theme="dark" className='d-flex align-items-center'>
         <Container>
           <Navbar.Brand href="/">
-          {/* Here we add the logo  */}
+          {/* Here we add the logo  */} Glory Games
           </Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
@@ -38,7 +41,29 @@ const NavBar = () => {
                       )}
                     </Nav.Link>
 
-                    <Nav.Link href="#" onClick = {() => dispatch(logout(navigate))}>Logout</Nav.Link>
+{/* Profile Dropdown  */}
+
+                <NavDropdown title = {
+                      <Image src={user.profilePicture} roundedCircle width={30} height={30} alt='profile' style={{ objectFit: 'cover', border: '2px solid #aaa' }} />
+ 
+                    }
+                    id='user-nav-dropdown'
+                    align="end"
+                    menuVariant='dark' 
+                    drop='down'
+                    noCaret
+                    show = {showDropdown}
+                    onMouseEnter = {() => setShowDropdown(true)}
+                    onMouseLeave = {() => setShowDropdown(false)}
+                    style={{ zIndex: 1050 }}
+                    className='position-relative'
+                    >
+                    
+                          <NavDropdown.Item href='/profile'> My Profile</NavDropdown.Item>
+                          <NavDropdown.Item href='/orders'> My Orders</NavDropdown.Item>
+                          <NavDropdown.Divider />
+                          <NavDropdown.Item onClick={() => dispatch(logout(navigate))}>Logout</NavDropdown.Item>
+                    </NavDropdown>
 
                 </>
             ) : (
