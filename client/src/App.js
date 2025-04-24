@@ -22,6 +22,7 @@ import { ToastContainer } from 'react-toastify';
 import ToastManager from './components/ToastManager';
 import SpinLoad from './components/SpinLoad';
 import MyOrders from './components/MyOrders';
+import CategoryProd from './components/CategoryProd';
 
 
 
@@ -60,6 +61,8 @@ function App() {
       <Routes>
         <Route path = '/' element = { <Home /> } />
         <Route path = '/product/:id' element = {<ProdDetails />} />
+        <Route path = '/category/:category/:subcategory' element = {<CategoryProd />} />
+        
         {isAuth ? (
           <>
           <Route path = '/profile' element = { <Profile /> } />

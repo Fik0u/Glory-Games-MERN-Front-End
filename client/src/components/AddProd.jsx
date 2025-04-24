@@ -8,7 +8,7 @@ const AddProd = () => {
         name: '',
         description: '',
         category: '',
-        subCategory: '',
+        subcategory: '',
         price: 0,
         image: ''
     });
@@ -41,7 +41,7 @@ const AddProd = () => {
         </Form.Group>
 
           <Form.Group className="mb-3">
-          <Form.Control type='text' placeholder="Sub-category" name='subCategory' value={newProd.subCategory} onChange={handleChange} />
+          <Form.Control type='text' placeholder="Sub-category" name='subcategory' value={newProd.subcategory} onChange={handleChange} />
         </Form.Group>
 
         <Form.Group className="mb-3">
