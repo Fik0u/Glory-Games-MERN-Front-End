@@ -55,8 +55,7 @@ function App() {
 
 {/* Navbar  */}
       <NavBar />
-      
-      <h1>Glory Games e-Commerce MERN</h1>
+
 {/* Main Routes  */}
       <Routes>
         <Route path = '/' element = { <Home /> } />
