@@ -76,8 +76,7 @@ const NavBar = () => {
               <HoverItem href="/category/accessories/nintendo" label="Nintendo Accessories" />
             </NavDropdown>
 
-            {isAuth ? (
-                <>
+            {isAuth && !user.isAdmin && (
 
                     <Nav.Link href="/cart" className='d-flex align-items-center position-relative'>
                       <FaShoppingCart size = {24} />
@@ -87,9 +86,9 @@ const NavBar = () => {
                         </Badge>
                       )}
                     </Nav.Link>
-
+            )}
 {/* Profile Dropdown  */}
-
+            {isAuth && (
                 <NavDropdown title = {
                       <Image src={user.profilePicture} roundedCircle width={30} height={30} alt='profile' style={{ objectFit: 'cover', border: '2px solid #aaa' }} />
  
@@ -106,18 +105,19 @@ const NavBar = () => {
                     
                           <NavDropdown.Item href='/profile'> My Profile</NavDropdown.Item>
                           <NavDropdown.Item href='/myorders'> My Orders</NavDropdown.Item>
+                          {user.isAdmin && <NavDropdown.Item href='/admin'> Dashboard</NavDropdown.Item>}
                           <NavDropdown.Divider />
                           <NavDropdown.Item onClick={() => dispatch(logout(navigate))}>Logout</NavDropdown.Item>
                     </NavDropdown>
+            )}
 
-                </>
-            ) : (
+
+            {!isAuth && (
                 <>
                     <Nav.Link href="/login">Login</Nav.Link>
                     <Nav.Link href="/register">Register</Nav.Link>
                 </>
             )}
-            {user && user.isAdmin && <Nav.Link href='/admin'>Dashboard</Nav.Link>}
           </Nav>
         </Container>
       </Navbar>
