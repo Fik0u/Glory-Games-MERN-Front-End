@@ -14,7 +14,13 @@ const EditProd = ({ product }) => {
     const [editedProd, setEditedProd] = useState({
         name: product.name,
         description: product.description,
-        price: product.price
+        price: '',
+        oldPrice: product.price || '',
+        isSale: product.isSale || false,
+        category: product.category || '',
+        subcategory: product.subcategory || '',
+        image: product.image
+
     });
 
     const dispatch = useDispatch();
@@ -45,12 +51,35 @@ const EditProd = ({ product }) => {
       <Form.Group className="mb-3">
         <Form.Control type="text" placeholder="Name" name='name' value={editedProd.name} onChange={handleChange} />
       </Form.Group>
+
       <Form.Group className="mb-3">
         <Form.Control type="text" placeholder="Description" name='description' value={editedProd.description} onChange={handleChange} />
       </Form.Group>
+
       <Form.Group className="mb-3">
         <Form.Control type="number" placeholder="Price" name='price' value={editedProd.price} onChange={handleChange} />
       </Form.Group>
+
+      <Form.Group className="mb-3">
+        <Form.Control type="number" placeholder="Old Price (Optional)" name='oldPrice' value={editedProd.oldPrice || ''} onChange={handleChange} />
+      </Form.Group>
+
+      <Form.Group className="mb-3">
+        <Form.Check type="checkbox" label='On Sales' name='isSale' value={editedProd.isSale} onChange={(e) => setEditedProd({ ...editedProd, isSale: e.target.checked })} />
+      </Form.Group>
+
+      <Form.Group className="mb-3">
+        <Form.Control type="text" placeholder="Category" name='category' value={editedProd.category || ''} onChange={handleChange} />
+      </Form.Group>
+
+      <Form.Group className="mb-3">
+        <Form.Control type="text" placeholder="Sub-category" name='subcategory' value={editedProd.subcategory || ''} onChange={handleChange} />
+      </Form.Group>
+
+      <Form.Group className="mb-3">
+        <Form.Control type="text" placeholder="Image" name='image' value={editedProd.image} onChange={handleChange} />
+      </Form.Group>
+
     </Form>
         </Modal.Body>
         <Modal.Footer>
