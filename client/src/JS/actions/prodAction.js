@@ -1,6 +1,7 @@
 // Imports of the necessary modules
 import axios from 'axios';
 import { ADD_PRODUCT, DELETE_PRODUCT, EDIT_PRODUCT, FAIL_PRODUCT, GET_ONE_PRODUCT, GET_PRODUCTS, LOAD_PRODUCT, SEARCH_PRODUCTS } from "../actionTypes/prodActionTypes";
+import { setErrorToast, setSuccessToast } from './toastAction';
 
 
 
@@ -16,10 +17,12 @@ export const addProd = (newProd) => async (dispatch) => {
             }
         };
         const result = await axios.post('/api/product/addProd', newProd, config);
-        console.log(newProd)
+        // console.log(newProd)
         dispatch({ type: ADD_PRODUCT, payload: result.data.newProduct });
+        dispatch(setSuccessToast('Product added successfully'))
     } catch (error) {
         dispatch({ type: FAIL_PRODUCT, payload: error.response.data })
+        dispatch(setErrorToast('Failed to add product'))
     }
 };
 
