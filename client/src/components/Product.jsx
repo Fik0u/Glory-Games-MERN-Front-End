@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Button } from 'react-bootstrap';
+import { Card, Button, Badge } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import EditProd from './EditProd';
 import { useDispatch } from 'react-redux';
@@ -19,14 +19,28 @@ const Product = ({ product, admin }) => {
 
   return (
     <div>
-      <Card style={{ width: '18rem' }}>
+      <Card style={{ width: '18rem', position: 'relative' }}>
+        {product.isSale && (
+          <Badge bg='danger' style={{ position: 'absolute', top:'10px', right: '10px', fontSize: '0.8rem' }}>
+            Sales
+          </Badge>
+        )}
       <Card.Img variant="top" src={ product.image } />
       <Card.Body>
         <Card.Title>{ product.name }</Card.Title>
         <Card.Text>
           { product.description }
           <br />
-          { product.price } $
+          {product.isSale ? (
+            <>
+              <span style={{ fontWeight: 'bold' }}>{product.price} $</span>
+              <br />
+              <span style={{ textDecoration: 'line-through', color: 'gray' }}>{product.oldPrice} $</span>
+            </>
+          ): (
+            <>{product.price} $</>
+          )}
+
         </Card.Text>
         {admin ? (
           <>
