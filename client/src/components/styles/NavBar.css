@@ -1,0 +1,38 @@
+#navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-image: linear-gradient(to right, #0b0f1a, #0f2c49, #112a3a);
+    box-shadow: 0 0 15px #00d4ff88, 0 0 30px #0077ffa0;
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06)
+}
+
+.nav-dropdown {
+    margin-right : 25px
+}
+
+.navbar-nav .nav-dropdown .dropdown-toggle::after {
+    display: none !important;
+}
+
+.navbar-nav .dropdown-toggle::after {
+    display: none !important;
+}
+
+.custom-nav-title {
+    font-size: 1rem; 
+    color: rgb(148, 220, 220) !important; 
+    font-weight: bold;
+    /* text-shadow: 0 0 5px #0ff; */
+    transition: all 0.3s ease-in-out;
+    text-transform: uppercase;
+    margin-right: 30px;
+    margin-left: 15px;
+}
+
+.navbar-nav .nav-link.dropdown-toggle.custom-nav-title:hover {
+    color: #fff !important;
+    text-shadow: 0 0 10px #fff;
+}
+
