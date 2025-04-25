@@ -12,11 +12,17 @@ const Users = () => {
     }, [dispatch])
 
   return (
-    <div>
-      
-        <UsersList />
+    <div style={{ marginTop: '60px' }}>
+          <h2 style={{ textAlign: 'center', fontSize: '2rem', color: '#2c3e50' }}>
+            Users List
+          </h2>
 
-    </div>
+          <p style={{ textAlign: 'center', color: '#7f8c8d' }}>
+            This is the list of all users registered in the system. You can view their details and manage their accounts from here
+          </p>
+
+          <UsersList />
+    </div>  
   )
 }
 

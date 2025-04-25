@@ -22,7 +22,7 @@ const UsersList = () => {
 
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'space-around', alignContent: 'center', flexWrap: 'wrap', margin: '40px', gap: '20px' }}>
+    <div style={{ display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap', margin: '40px auto', gap: '20px', maxWidth: '1200px' }}>
 
     {users.filter(user => user.isAdmin !== true)
         .map(user => <User key = {user._id} user = {user} onShowDetails = {handleShow} /> )}
