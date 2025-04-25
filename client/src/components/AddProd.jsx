@@ -45,7 +45,7 @@ const AddProd = () => {
         </Form.Group>
 
         <Form.Group className="mb-3">
-          <Form.Control type='number' placeholder="Price" name='price' value={newProd.price} onChange={handleChange} className='rounded-3 border-0 shadow-sm' />
+          <Form.Control type='number' placeholder="Price" name='price' value={newProd.price} onChange={handleChange} min={0} className='rounded-3 border-0 shadow-sm' />
         </Form.Group>
 
         <Form.Group className="mb-3">
