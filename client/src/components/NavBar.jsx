@@ -104,7 +104,8 @@ const NavBar = () => {
                     >
                     
                           <NavDropdown.Item href='/profile'> My Profile</NavDropdown.Item>
-                          <NavDropdown.Item href='/myorders'> My Orders</NavDropdown.Item>
+                          {!user.isAdmin && 
+                          <NavDropdown.Item href='/myorders'> My Orders</NavDropdown.Item>}
                           {user.isAdmin && <NavDropdown.Item href='/admin'> Dashboard</NavDropdown.Item>}
                           <NavDropdown.Divider />
                           <NavDropdown.Item onClick={() => dispatch(logout(navigate))}>Logout</NavDropdown.Item>
