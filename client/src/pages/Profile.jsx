@@ -107,6 +107,7 @@ const Profile = () => {
               marginBottom: '20px'
             }} 
           />
+          {!user.isAdmin && (
           <button 
             onClick={() => navigate('/myorders')} 
             style={{
@@ -125,6 +126,7 @@ const Profile = () => {
           >
             📦 My Orders History
           </button>
+          )}
         </div>
       </div>
 
