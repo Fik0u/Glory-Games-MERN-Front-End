@@ -18,49 +18,43 @@ const Product = ({ product, admin }) => {
   };
 
   return (
-    <div>
-      <Card style={{ width: '18rem', position: 'relative' }}>
+      <Card style={{ width: '19rem', borderRadius: '15px', overflow: 'hidden', boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)', position: 'relative', transition: 'transform 0.3s ease', cursor: 'pointer' }} className='product-card mb-4' >
+
         {product.isSale && (
-          <Badge bg='danger' style={{ position: 'absolute', top:'10px', right: '10px', fontSize: '0.8rem' }}>
-            Sales
+          <Badge bg='danger' style={{ position: 'absolute', top:'10px', right: '10px', fontSize: '0.8rem', zIndex: 2 }}>
+            Sale
           </Badge>
         )}
-      <Card.Img variant="top" src={ product.image } />
+    <Link to={`/product/${product._id}`} style={{ textDecoration: 'none', color: 'inherit' }} >
+      <Card.Img variant="top" src={ product.image } style={{ height: '400px', objectFit: 'cover' }} />
       <Card.Body>
-        <Card.Title>{ product.name }</Card.Title>
-        <Card.Text>
-          { product.description }
-          <br />
+        <Card.Title className='text-center'>{ product.name }</Card.Title>
+        <Card.Text className='text-center'>
           {product.isSale ? (
             <>
-              <span style={{ fontWeight: 'bold' }}>{product.price} $</span>
+              <span style={{ fontWeight: 'bold', fontSize: '1.1rem' }}>{product.price} $</span>
               <br />
-              <span style={{ textDecoration: 'line-through', color: 'gray' }}>{product.oldPrice} $</span>
+              <span style={{ textDecoration: 'line-through', color: 'gray', fontSize: '0.9rem' }}>{product.oldPrice} $</span>
             </>
           ): (
-            <>{product.price} $</>
+            <span style={{ fontWeight: 'bold', fontSize: '1.1rem' }}>{product.price} $</span>
           )}
+          </Card.Text>
+        </Card.Body>
+      </Link>
 
-        </Card.Text>
-        {admin ? (
-          <>
-          <div style={{display: 'flex', justifyContent: 'space-around'}}>
-        <Link to = {`/product/${product._id}`}>
-        <Button variant="primary">Details</Button>
-        </Link>
+      {admin && (
+
+        <div className='d-flex justify-content-around pb-3'>
+          <Link to = {`/product/${product._id}`}></Link>
         <EditProd product = { product } />
-        <Button variant='danger' onClick={handleDelete}>Delete</Button>
+        <Button variant='danger' size='sm' onClick={handleDelete}>
+          Delete
+        </Button>
         </div>
-          </>
-        ) : (
-          <Link to = {`/product/${product._id}`}>
-          <Button variant="primary">Details</Button>
-          </Link>
-        )}
+      )}
 
-      </Card.Body>
     </Card>
-    </div>
   )
 }
 
