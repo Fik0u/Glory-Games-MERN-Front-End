@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useDispatch } from 'react-redux';
 import { editProd } from '../JS/actions/prodAction';
+import { EditOutlined } from '@ant-design/icons';
 
 const EditProd = ({ product }) => {
     const [show, setShow] = useState(false);
@@ -38,9 +39,14 @@ const EditProd = ({ product }) => {
 
   return (
     <div>
-      <Button variant="success" onClick={handleShow}>
-        Edit
-      </Button>
+      <EditOutlined onClick={handleShow} style={{ fontSize: '1.3rem', color: '#52c41a', cursor: 'pointer', backgroundColor: '#f0f0f0', borderRadius: '50%', padding: '8px', boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)', transition:'all 0.3s ease', display:'inline-flex', alignItems: 'center', justifyContent: 'center' }}  onMouseEnter={(e) => {
+    e.currentTarget.style.backgroundColor = '#e6f7ff';
+    e.currentTarget.style.transform = 'scale(1.1)';
+  }}
+  onMouseLeave={(e) => {
+    e.currentTarget.style.backgroundColor = '#f0f0f0';
+    e.currentTarget.style.transform = 'scale(1)';
+  }} title='Edit Product' />
       
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
