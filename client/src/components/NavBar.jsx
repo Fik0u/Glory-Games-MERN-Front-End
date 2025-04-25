@@ -85,9 +85,9 @@ const NavBar = () => {
             {isAuth && !user.isAdmin && (
 
                     <Nav.Link href="/cart" className='d-flex align-items-center position-relative me-3'>
-                      <FaShoppingCart size = {24} />
+                      <FaShoppingCart color='white' size = {24} />
                       {cartItemCount > 0 && (
-                        <Badge pill bg = 'danger' style = {{position: 'absolute', top: -5, right: -5, fontSize: '0.75rem', width: '16px', height: '16px', display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '0'}}>
+                        <Badge pill bg = 'danger' style = {{position: 'absolute', top: 6, right: -2, fontSize: '0.75rem', width: '16px', height: '16px', display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '0'}}>
                           {cartItemCount}
                         </Badge>
                       )}
@@ -121,8 +121,8 @@ const NavBar = () => {
 
             {!isAuth && (
                 <>
-                    <Nav.Link href="/login">Login</Nav.Link>
-                    <Nav.Link href="/register">Register</Nav.Link>
+                    <Nav.Link href="/login" className="auth-link">Login</Nav.Link>
+                    <Nav.Link href="/register" className="auth-link">Register</Nav.Link>
                 </>
             )}
           </Nav>

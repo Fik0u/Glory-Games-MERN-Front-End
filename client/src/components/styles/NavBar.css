@@ -24,7 +24,7 @@
     font-size: 1rem; 
     color: rgb(148, 220, 220) !important; 
     font-weight: bold;
-    /* text-shadow: 0 0 5px #0ff; */
+    text-shadow: 0 0 5px #0ff;
     transition: all 0.3s ease-in-out;
     text-transform: uppercase;
     margin-right: 30px;
@@ -34,5 +34,13 @@
 .navbar-nav .nav-link.dropdown-toggle.custom-nav-title:hover {
     color: #fff !important;
     text-shadow: 0 0 10px #fff;
+}
+
+.auth-link {
+    font-size: 1.1rem !important; 
+    color: #c1e1e7 !important; 
+    font-weight: bold; 
+    text-shadow: 0 0 5px #00d4ff; 
+    transition: all 0.3s ease-in-out;
 }
 
