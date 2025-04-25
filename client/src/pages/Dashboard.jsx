@@ -60,13 +60,17 @@ const Dashboard = () => {
         background: 'white',
         padding: '24px',
         borderRadius: '12px',
-        boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
+        boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+        width: '70%',
+        maxWidth: '800px',
+        margin: '0 auto',
+        transition: 'all 0.3s ease'
       }}>
-  <h2 style={{
-          fontSize: '24px',
-          fontWeight: '600',
-          marginBottom: '16px'
-        }}> Add New Product </h2>
+  <h1 style={{
+        fontSize: '25px',
+        fontWeight: 'bold',
+        marginBottom: '24px'
+      }}> Add New Product </h1>
       <AddProd />
 </div>
     </div>
