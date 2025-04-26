@@ -7,8 +7,6 @@ import { FaShoppingCart } from 'react-icons/fa';
 import '../components/styles/NavBar.css';
 import logo from "../images/glory3.jpg";
 
-
-
 const NavBar = () => {
 
     const isAuth = useSelector(state => state.authReducer.isAuth);
@@ -45,7 +43,6 @@ const NavBar = () => {
       </NavDropdown.Item>
       )
     };
-
 
   return (
     <div>
@@ -85,9 +82,8 @@ const NavBar = () => {
 
             <Nav className='ms-auto'>
             {isAuth && !user.isAdmin && (
-
                     <Nav.Link href="/cart" className='d-flex align-items-center position-relative me-3'>
-                      <FaShoppingCart color='white' size = {24} />
+                      <FaShoppingCart  color='white' size = {24} />
                       {cartItemCount > 0 && (
                         <Badge pill bg = 'danger' style = {{position: 'absolute', top: 6, right: -2, fontSize: '0.75rem', width: '16px', height: '16px', display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '0'}}>
                           {cartItemCount}
@@ -95,11 +91,10 @@ const NavBar = () => {
                       )}
                     </Nav.Link>
             )}
-{/* Profile Dropdown  */}
+            {/* Profile Dropdown  */}
             {isAuth && (
                 <NavDropdown title = {
-                      <Image src={user.profilePicture} roundedCircle width={40} height={40} alt='profile' style={{ objectFit: 'cover', border: '2px solid #aaa' }} />
- 
+                      <Image src={user.profilePicture} roundedCircle width={50} height={50} alt='profile' style={{ objectFit: 'cover', border: '2px solid #aaa' }} />
                     }
                     id='user-nav-dropdown'
                     align="end"
@@ -111,7 +106,6 @@ const NavBar = () => {
                     className='position-relative'
                     toggle={false}
                     >
-                    
                           <NavDropdown.Item href='/profile'> My Profile</NavDropdown.Item>
                           {!user.isAdmin && 
                           <NavDropdown.Item href='/myorders'> My Orders</NavDropdown.Item>}
@@ -135,4 +129,4 @@ const NavBar = () => {
   )
 }
 
-export default NavBar
+export default NavBar;

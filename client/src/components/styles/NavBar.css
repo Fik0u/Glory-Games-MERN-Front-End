@@ -6,16 +6,9 @@
     box-shadow: 0 0 15px #00d4ff88, 0 0 30px #0077ffa0;
     backdrop-filter: blur(8px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 10px 15px;
 }
 
-.nav-dropdown {
-    margin-right: 25px;
-}
-
-.navbar-nav .nav-dropdown .dropdown-toggle::after,
-.navbar-nav .dropdown-toggle::after {
-    display: none !important;
-}
 
 .custom-nav-title {
     font-size: 1rem;
@@ -33,6 +26,29 @@
     text-shadow: 0 0 10px #fff;
 }
 
+
+.navbar-nav .ms-auto .nav-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: auto;
+}
+
+.navbar-nav .ms-auto .nav-link .badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    font-size: 0.75rem;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+}
+
+
 .auth-link {
     font-size: 1.1rem !important;
     color: #c1e1e7 !important;
@@ -41,10 +57,53 @@
     transition: all 0.3s ease-in-out;
 }
 
-/* --------------------------- */
-/* Partie responsive ajoutée : */
-/* --------------------------- */
+
+.nav-dropdown-item {
+    transition: all 0.3s ease;
+}
+
+.nav-dropdown-item:hover, 
+.nav-dropdown-item:focus {
+    background-color: rgba(10, 33, 54, 0.64);
+    color: #0ff;
+    text-shadow: 0 0 5px #0ff;
+}
+
+
+#navbar .navbar-brand:hover {
+    color: #fff;
+    text-shadow: 0 0 10px #fff;
+}
+
+.navbar-nav .nav-dropdown .dropdown-toggle::after,
+.navbar-nav .dropdown-toggle::after {
+    display: none !important;
+}
+
+
+
+/* Responsive design */
 @media (max-width: 768px) {
+    .navbar-nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+    .navbar-nav .ms-auto {
+        display: flex;
+        justify-content: center; 
+        align-items: center;
+        width: 100%; 
+    }
+
+    .navbar-nav .ms-auto .nav-link {
+        justify-content: center;
+        position: relative;
+        margin-right: 0; 
+    }
+
     .custom-nav-title {
         font-size: 0.9rem;
         margin-right: 15px;
@@ -65,6 +124,21 @@
 }
 
 @media (max-width: 480px) {
+    .navbar-nav {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .navbar-nav .ms-auto {
+        justify-content: center;
+    }
+
+    .navbar-nav .ms-auto .nav-link {
+        justify-content: center;
+        position: relative;
+    }
+
     .custom-nav-title {
         font-size: 0.8rem;
         margin: 5px 0;
