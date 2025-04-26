@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getOneProd } from '../JS/actions/prodAction';
 import { addToCart } from '../JS/actions/cartAction';
-import '../components/styles/productDetails.css';
+
 
 
 
