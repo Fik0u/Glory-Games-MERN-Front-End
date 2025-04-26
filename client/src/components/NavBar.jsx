@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom'
 import { logout } from '../JS/actions/authAction';
 import { FaShoppingCart } from 'react-icons/fa';
 import '../components/styles/NavBar.css';
+import logo from "../images/glory3.jpg";
+
 
 
 const NavBar = () => {
@@ -51,7 +53,7 @@ const NavBar = () => {
         <Container>
           <Navbar.Brand href="/" className='d-flex align-items-center'>
           {/* Here we add the logo  */}
-          <img src="" alt="Glory Games" height="40" className='d-inline-block align-top me-2' />
+          <img src={logo} alt="Glory Games" height="40" className="d-inline-block align-top me-2" />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">

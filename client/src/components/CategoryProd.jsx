@@ -26,9 +26,19 @@ const CategoryProd = () => {
 
 
   return (
-    <div style={{ padding: '2rem' }}>
-      <h2>{capitalize(subcategory)} {capitalize(category)}</h2>
-      <hr />
+<div style={{
+  display: 'flex',
+  flexDirection: 'row', // éléments en ligne
+  alignItems: 'center',
+  justifyContent: 'center',
+  marginTop: '80px', // espace en haut
+  padding: '2rem',
+}}>
+
+
+    
+      
+   
       {/* Products  */}
       <div>
         {filteredProducts.length > 0 ? (
