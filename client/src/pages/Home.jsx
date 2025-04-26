@@ -28,7 +28,7 @@ const Home = () => {
 
 
   return (
-    <div>
+    <div className="home-background">
       <SearchBar />
       {/* Video  */}
       <div className='youtube-container'>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { searchProducts } from '../JS/actions/prodAction';
 import { useNavigate } from 'react-router-dom';
+import { FaSearch } from 'react-icons/fa';
 
 const SearchBar = () => {
 
@@ -24,15 +25,24 @@ const SearchBar = () => {
     };
 
   return (
-    <div style={{ position: 'relative', width: '60%', margin: '0 auto', marginTop: '20px' }}>
+    <div style={{ position: 'relative', width: '40%', margin: '0 auto', marginTop: '20px', marginBottom: '40px' }}>
       
         <input type='text' value={keyword} onChange={handleSearch} placeholder='Search product...' style={{
                     width: '100%',
-                    padding: '10px',
+                    padding: '12px 15px 12px 40px',
                     fontSize: '16px',
-                    borderRadius: '5px',
+                    borderRadius: '25px',
                     border: '1px solid #ccc',
-                }} />
+                    transition: 'all 0.3s ease',
+                    backgroundColor: '#fff',
+                    outline: 'none',
+                    boxShadow: keyword ?'0 0px 5px rgba(0, 212, 255, 0.5)' : 'none'
+                }}
+                onFocus={(e) => e.target.style.boxShadow = '0 0 5px rgba(0, 212, 255, 0.5)'}
+                onBlur={(e) => e.target.style.boxShadow = 'none'}
+                />
+
+        <FaSearch style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: '#ccc' }} />
 
         {keyword && (
             <div style={{

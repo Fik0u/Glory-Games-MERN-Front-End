@@ -1,6 +1,11 @@
 html {
   scroll-behavior: smooth;
 }
+.home-background {
+  background: linear-gradient(to bottom, #f5f5f5, #e0e0e0); /* Gris clair dégradé */
+  min-height: 100vh; /* Pour s'assurer que le fond couvre toute la hauteur de la page */
+  padding-bottom: 20px; /* Ajoute de l'espace en bas de la page */
+}
 
 .youtube-container {
   position: relative;
