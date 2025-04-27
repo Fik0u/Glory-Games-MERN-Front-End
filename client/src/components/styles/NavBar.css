@@ -9,6 +9,22 @@
     padding: 10px 15px;
 }
 
+.logo-img {
+    height: 60px; 
+    width: auto;  
+    object-fit: contain; 
+}
+
+.navbar-brand {
+    font-size: 1rem;
+    font-weight: bold;
+    color: rgb(166, 235, 235) !important; 
+}
+
+.navbar-brand:hover {
+    color: #ffffff !important;
+    text-shadow: 0 0 10px rgba(166,235,235), 0 0 20px rgba(30, 144, 255, 0.7) !important; 
+}
 
 .custom-nav-title {
     font-size: 1rem;
