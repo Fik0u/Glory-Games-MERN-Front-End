@@ -11,6 +11,7 @@ const CategoryProd = () => {
     const dispatch = useDispatch();
 
     const products = useSelector(state => state.prodReducer.prodsList);
+    const user = useSelector(state => state.authReducer.user);
 
     useEffect(() => {
 
@@ -37,7 +38,7 @@ const CategoryProd = () => {
             filteredProducts.map(prod => (
               <motion.div key={prod._id} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} style={{ maxWidth: '320px', margin: '0 auto' }} >
 
-                <Product product = {prod} />
+                <Product product = {prod} admin={user?.isAdmin} />
 
               </motion.div>
             ))
