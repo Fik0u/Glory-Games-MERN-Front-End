@@ -23,6 +23,7 @@ import ToastManager from './components/ToastManager';
 import SpinLoad from './components/SpinLoad';
 import MyOrders from './components/MyOrders';
 import CategoryProd from './components/CategoryProd';
+import Footer from './components/Footer';
 
 
 
@@ -86,7 +87,9 @@ function App() {
         )}
         <Route path = '/*' element = { <Error /> } />
       </Routes>
-      
+
+    {/* Footer  */}
+      <Footer />  
     </div>
   );
 }

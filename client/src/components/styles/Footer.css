@@ -1,0 +1,24 @@
+.footer-bg {
+    background-color: #1a1a1a; 
+  }
+  
+  .footer-logo {
+    max-width: 80px; 
+  }
+  
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px; 
+  }
+  
+  .social-icons a {
+    color: #fff;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .social-icons a:hover {
+    color: #00bfff; 
+    transform: scale(1.1);
+  }
+  
