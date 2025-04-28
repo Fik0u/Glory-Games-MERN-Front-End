@@ -32,7 +32,7 @@ const Home = () => {
       <SearchBar />
       {/* Video  */}
       <div className='youtube-container'>
-        <iframe src="https://www.youtube.com/embed/c0i88t0Kacs?autoplay=1&mute=1&loop=1&playlist=c0i88t0Kacs" title='test' frameborder="0" width="100%" height= "100%" allow='autoplay'></iframe>
+        <iframe src="https://www.youtube.com/embed/c0i88t0Kacs?autoplay=1&mute=1&loop=1&playlist=c0i88t0Kacs" title='test' frameBorder="0" width="100%" height= "100%" allow='autoplay' allowFullScreen ></iframe>
         <div className='video-overlay'>
           <h1>Welcome to Glory Games</h1>
           <p>Your one-stop shop for all your gaming needs !</p>

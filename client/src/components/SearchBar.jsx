@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { searchProducts } from '../JS/actions/prodAction';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { FaSearch } from 'react-icons/fa';
 
 const SearchBar = () => {
 
     const [keyword, setKeyword] = useState('');
-    const dispatch = useDispatch();
+
     const navigate = useNavigate();
 
     const prodsList = useSelector(state => state.prodReducer.prodsList);
 
+    const filteredProds = prodsList.length > 0
+    ? prodsList.filter(prod => prod.name.toLowerCase().includes(keyword.toLowerCase()))
+    : [];
+
     const handleSearch = (e) => {
         setKeyword(e.target.value);
-        if (e.target.value !== '') {
-            dispatch(searchProducts(e.target.value))
-        }
     };
 
     const goToDetails = (id) => {
@@ -57,8 +57,8 @@ const SearchBar = () => {
                 overflowY: 'auto',
                 zIndex: 1000,
             }}>
-                {prodsList.length > 0 ? (
-                    prodsList.map((prod) => (
+                {filteredProds.length > 0 ? (
+                    filteredProds.map((prod) => (
                         <div key={prod._id} onClick={() => goToDetails(prod._id)} style={{
                             display: 'flex',
                             alignItems: 'center',
