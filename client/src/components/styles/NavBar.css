@@ -42,6 +42,14 @@
     text-shadow: 0 0 10px #fff;
 }
 
+.navbar-toggler {
+    border-color: #6b94bd89 !important; 
+  }
+
+  .navbar-toggler:hover {
+    background-color: rgba(66, 144, 204, 0.512) !important; 
+  }
+
 
 .navbar-nav .ms-auto .nav-link {
     display: flex;

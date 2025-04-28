@@ -38,12 +38,12 @@ const Profile = () => {
   return (
     <div style={{
       backgroundColor: '#f5f5f5',
+      minHeight: '100vh',
       display: 'flex', 
       flexDirection: 'row', 
       justifyContent: 'center', 
       alignItems: 'flex-start', 
-      margin: '40px auto', 
-      padding: '30px',
+      paddingTop: '40px',
     }}>
       <div style={{
         backgroundColor: '#1e1e1e', 
