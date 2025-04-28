@@ -21,8 +21,8 @@ const Product = ({ product, admin }) => {
   return (
     <Card 
     style={{ 
-      width: '20rem', // Taille de carte augmentée
-      borderRadius: '20px', // Bords plus arrondis
+      width: '18rem', 
+      borderRadius: '20px', 
       overflow: 'hidden', 
       boxShadow: '0 6px 25px rgba(0, 0, 0, 0.15)', 
       position: 'relative', 
@@ -59,7 +59,7 @@ const Product = ({ product, admin }) => {
         variant="top" 
         src={product.image} 
         style={{ 
-          height: '300px', // Image moins haute pour un meilleur équilibre
+          height: '300px', 
           objectFit: 'cover' 
         }} 
       />
