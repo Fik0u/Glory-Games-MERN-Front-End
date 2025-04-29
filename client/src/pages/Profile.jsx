@@ -28,6 +28,12 @@ const Profile = () => {
     const formData = new FormData();
     formData.append('fullName', fullName);
     formData.append('email', email);
+    formData.append('username', username);
+    formData.append('street', street);
+    formData.append('city', city);
+    formData.append('postalCode', postalCode);
+    formData.append('country', country);
+    formData.append('phone', phone);
     if (picture) {
       formData.append('picture', picture);
     }
@@ -157,6 +163,14 @@ const Profile = () => {
     }}>
       <h3 style={{ color: '#fff', marginBottom: '20px' }}>Edit Your Profile</h3>
 
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: '1fr 1fr',
+        gap: '15px',
+        width: '100%',
+        marginBottom: '15px'
+      }}>
+
       <input
         type="text"
         value={fullName}
@@ -196,6 +210,15 @@ const Profile = () => {
           transition: 'border-color 0.3s',
         }}
       />
+    </div>
+
+    <div style={{
+        display: 'grid',
+        gridTemplateColumns: '1fr 1fr',
+        gap: '15px',
+        width: '100%',
+        marginBottom: '15px',
+      }}>
 
       <input
         type="email"
@@ -235,6 +258,16 @@ const Profile = () => {
           transition: 'border-color 0.3s',
         }}
         />
+        </div>
+
+        <div style={{
+        display: 'grid',
+        gridTemplateColumns: '1fr 1fr',
+        gap: '15px',
+        width: '100%',
+        marginBottom: '15px',
+      }}>
+
       <input
         type="text"
         value={city}
@@ -273,6 +306,16 @@ const Profile = () => {
           transition: 'border-color 0.3s',
         }}
         />
+        </div>
+
+        <div style={{
+        display: 'grid',
+        gridTemplateColumns: '1fr 1fr',
+        gap: '15px',
+        width: '100%',
+        marginBottom: '15px',
+      }}>
+
       <input
         type="text"
         value={country}
@@ -312,6 +355,16 @@ const Profile = () => {
           transition: 'border-color 0.3s',
         }}
       />
+      </div>
+
+      <p style={{
+        color: '#ccc',
+        fontSize: '14px',
+        marginBottom: '10px',
+        textAlign: 'center',
+      }}>
+          Choose a new profile picture
+      </p>
       <input
         type="file"
         accept='image/*'
@@ -319,14 +372,6 @@ const Profile = () => {
         style={{ marginBottom: '20px', borderRadius: '8px', padding: '10px', backgroundColor: '#3a3a3a', border: '2px dashed #6c63ff', color: '#fff', fontSize: '14px', textAlign: 'center', width: '100%' }}
       />
 
-      <p style={{
-        color: '#ccc',
-        fontSize: '14px',
-        marginBottom: '40px',
-        textAlign: 'center',
-      }}>
-          Choose a new profile picture
-      </p>
 
       <div>
         <button
