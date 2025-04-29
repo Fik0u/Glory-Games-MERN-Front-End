@@ -33,10 +33,10 @@ const Home = () => {
       <div className='ter9a3'></div>
       {/* Video  */}
       <div className='youtube-container'>
-        {/* <iframe src="https://www.youtube.com/embed/D2iszf_XJqk?autoplay=1&mute=1&controls=0&loop=1&playlist=D2iszf_XJqk&modestbranding=1&showinfo=0" title='test' frameBorder="0" width="100%" height= "100%" allow='autoplay' allowFullScreen ></iframe> */}
            <video autoPlay muted loop className='video-background'>
-            <source src='/videos/glory.mp4'  type='video/mp4'/>
+            <source src='/videos/Glory.mp4'  type='video/mp4'/>
              </video>
+
         <div className='video-overlay'>
           <h1>Welcome to Glory Games</h1>
           <p>Your one-stop shop for all your gaming needs !</p>
