@@ -30,7 +30,7 @@ const Home = () => {
   return (
     <div className="home-background">
       <SearchBar />
-      <div className='ter9a3'></div>
+
       {/* Video  */}
       <div className='youtube-container'>
            <video autoPlay muted loop className='video-background'>

@@ -25,7 +25,7 @@ const SearchBar = () => {
     };
 
   return (
-    <div style={{ position: 'relative', width: '40%', margin: '0 auto', marginTop: '20px' }}>
+    <div style={{ position: 'relative', width: '40%', margin: '0 auto', marginTop: '20px', marginBottom: '40px' }}>
       
         <input type='text' value={keyword} onChange={handleSearch} placeholder='Search product...' style={{
                     width: '100%',
