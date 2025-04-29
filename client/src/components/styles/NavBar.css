@@ -78,9 +78,30 @@
     color: #c1e1e7 !important;
     font-weight: bold;
     text-shadow: 0 0 5px #00d4ff;
+    position: relative;
+    padding-bottom: 5px;
     transition: all 0.3s ease-in-out;
 }
 
+.auth-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: rgb(55, 136, 136); 
+    transition: width 0.3s ease;
+}
+
+.auth-link:hover {
+    color: #fff !important;
+    text-shadow: 0 0 5px #fff;
+}
+
+.auth-link:hover::after {
+    width: 100%; 
+}
 
 .nav-dropdown-item {
     transition: all 0.3s ease;

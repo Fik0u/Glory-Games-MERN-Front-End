@@ -52,7 +52,7 @@ const Register = () => {
         marginTop: '60px',
         marginBottom: "60px",
         padding: '2rem',
-        backgroundColor: '#d1d5db',
+        backgroundColor: '#f0f4f8',
         borderRadius: '0.5rem',
         boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
       }}
@@ -181,7 +181,7 @@ const Register = () => {
 
         <p className="mt-4 mb-6 text-gray-600">
           Already have an account?
-          <a href="/login" className="ml-1 text-blue-600 font-semibold hover:underline">
+          <a href="/login" className="ml-2 text-blue-600 font-semibold hover:underline">
             Sign in
           </a>
         </p>
